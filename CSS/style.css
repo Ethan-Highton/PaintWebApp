@@ -1,10 +1,4 @@
 @charset "UTF-8";
-*, ::before, *::after {
-  box-sizing: border-box;
-  font-family: Helvetica, sans-serif;
-  font-weight: normal;
-}
-
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors
@@ -10939,12 +10933,6 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-body {
-  padding: 0;
-  margin: 0;
-  text-align: center;
-}
-
 .btn-outline-primary {
   --bs-btn-color: #022a68 !important;
   --bs-btn-border-color: #022a68!important;
@@ -10962,8 +10950,6 @@ body {
   --bs-gradient: none!important;
 }
 
-.Title {
-  background: rgba(0, 0, 0, 0.75);
-  color: #fff;
-  text-align: center;
+.btn-group {
+  width: 125px !important;
 }/*# sourceMappingURL=style.css.map */

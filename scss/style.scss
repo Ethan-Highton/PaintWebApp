@@ -1,16 +1,8 @@
-*, ::before, *::after {
-    box-sizing: border-box;
-    font-family: Helvetica, sans-serif;
-    font-weight: normal;
-}
+
 @import "../node_modules/bootstrap/scss/bootstrap";
 $mynewcolor: #022a68;
 
-body{
-    padding: 0;
-    margin: 0;
-    text-align: center;
-}
+
 .btn-outline-primary {
   --bs-btn-color: #022a68 !important;
   --bs-btn-border-color: #022a68!important;
@@ -27,11 +19,8 @@ body{
   --bs-btn-disabled-border-color: #022a68!important;
   --bs-gradient: none!important;
 }
-
-
-.Title{
-    background: rgba(0, 0, 0, .75);
-    color: #fff;
-    text-align: center;
+.btn-group {
+    width: 125px !important;
 }
+
 
