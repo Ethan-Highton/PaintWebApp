@@ -5,17 +5,20 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { OneRoomComponent } from './one.room/one.room.component';
 import { HomeComponent } from './home/home.component';
+import { MultiroomComponent } from './multiroom/multiroom.component';
 
 const appRoute: Routes = [
   {path: "", component: HomeComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'oneroom', component: OneRoomComponent}
+  {path: 'one', component: OneRoomComponent},
+  {path: 'multi', component: MultiroomComponent}
 ]
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    OneRoomComponent
+    OneRoomComponent,
+    MultiroomComponent
   ],
   imports: [
     BrowserModule,
