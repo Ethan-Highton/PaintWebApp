@@ -1,1 +1,35 @@
-<p>multiroom works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Multiple rooms</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>How many rooms?</h2>
+        </div>
+    </div>
+<!--    <div class="row" style="background-color: transparent;">
+        <div class="col input-group">
+            <select class="form-select shadow" sans-serif-label="Number of rooms">
+                <option *ngFor="let number of numbersArray" [value]="number">{{ number }}</option>
+              </select>
+            <div class="input-group-append shadow">
+                <button type="button" class="btn btn-primary btn ">Go!</button>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+<div class="dropdown row">
+    <div class="col-4">
+        <ul>
+            <li (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)">
+                <a class="droptitle" id="menuElem">rooms <img border="0"  src="assets/Images/chevron.png"></a>
+                    <ul class="list" [class.visible]="isDropdownVisible" style="display: none;" [style.display]="isDropdownVisible ? 'block' : 'none'">
+                        <li *ngFor="let number of numbersArray" [value]="number"><a>{{ number }}</a></li>
+                    </ul>
+            </li>
+        </ul>
+    </div>
+</div>

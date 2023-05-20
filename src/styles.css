@@ -60,3 +60,7 @@ border-radius: 0px 0px 10px 0px;
     width: 5.5em;
     border-radius: 0px 0px 10px 0px;
 }
+
+.input-group-append.shadow {
+    border-radius: 0px 0px 10px 0px;
+}

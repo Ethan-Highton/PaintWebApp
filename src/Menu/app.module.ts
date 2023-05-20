@@ -2,6 +2,7 @@ import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { AfterViewInit, ViewChild, ElementRef} from '@angular/core'
 
 import { AppComponent } from './app.component';
 import { OneRoomComponent } from './one.room/one.room.component';

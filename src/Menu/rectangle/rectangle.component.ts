@@ -13,6 +13,8 @@ export class RectangleComponent {
   gals!: number;
   showResults = false;
   allInputsFilled = false;
+  isDropdownVisible = false;
+
 
   checkInputs() {
     if (this.width && this.length && this.height) {
@@ -27,4 +29,12 @@ export class RectangleComponent {
     this.showResults = true;
     this.gals = this.area / 400;
   }
+  showDropdown(event: MouseEvent) {
+    this.isDropdownVisible = true;
+  }
+
+  hideDropdown(event: MouseEvent) {
+    this.isDropdownVisible = false;
+  }
 }
+
