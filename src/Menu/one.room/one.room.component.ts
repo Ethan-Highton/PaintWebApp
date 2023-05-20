@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./one.room.component.css']
 })
 export class OneRoomComponent {
+  selectedOption: string = "";
 
+  updateSelectedOption(option: string) {
+    if (this.selectedOption === option) {
+      this.selectedOption = "";
+    } else {
+      this.selectedOption = option;
+    }
+  }
 }

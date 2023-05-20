@@ -45,10 +45,18 @@ background-color: #00a3e4;
 border-color: #00a3e4;
 display: block;
 position: relative;
+border-radius: 0px 0px 10px 0px;
 }
 
 .hr {
     margin-bottom: 20px;
     border-top: solid 1px #cccccc;
+    width: 100%;
+}
 
+.input-group-text {
+    color: #fff;
+    background-color: #00a3e4;
+    width: 5.5em;
+    border-radius: 0px 0px 10px 0px;
 }

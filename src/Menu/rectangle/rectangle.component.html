@@ -1,0 +1,61 @@
+<div class="row">
+    <h2 class="col">All we need now are the dimensions!</h2>
+</div>
+<div class="row">
+    <p class="col">Please fill out the following:</p>
+</div>
+<div class="row">
+    <div class="col input-group mb-3">
+        <div class="inpug-group-prepend">
+            <span class="input-group-text" id="input-group-sizing-default">Width(ft)</span>
+        </div>
+        <input type="text" class="form-control" id="width1" sans-serif-describedby="input-group-sizing-default" [(ngModel)]="width" (input)="checkInputs()">
+    </div>
+</div>
+<div class="row">
+    <div class="col input-group mb-3">
+        <div class="inpug-group-prepend">
+            <span class="input-group-text" id="input-group-sizing-default">Length(ft)</span>
+        </div>
+        <input type="text" class="form-control" id="length1" sans-serif-describedby="input-group-sizing-default" [(ngModel)]="length" (input)="checkInputs()" >
+    </div>
+</div>
+<div class="row">
+    <div class="col input-group mb-3">
+        <div class="inpug-group-prepend">
+            <span class="input-group-text" id="input-group-sizing-default">Height(ft)</span>
+        </div>
+        <input type="text" class="form-control" id="Height1" sans-serif-describedby="input-group-sizing-default" [(ngModel)]="height" (input)="checkInputs()" >
+    </div>
+</div>
+<div class="row mb-3 ">
+    <div class="col-4 ">
+        <button type="button" class="btn btn-primary btn" style="width: 100%;" [disabled]="!allInputsFilled" (click)="calculate()" (click)="showResults = true">Submit</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <div class="hr"></div>
+    </div>
+</div>
+<div class="results" *ngIf="showResults">
+    <div class="row">
+        <div class=" input-group mb-3 col-3">
+            <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; " [value]="area" readonly>
+            <div class="input-group-append">
+                <span class="input-group-text" id="input-group-sizing-default">Sqft</span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <p class="col">Per coat you will need:</p>
+    </div>
+    <div class="row">
+        <div class=" input-group mb-3 col-3">
+            <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; " [value]="gals" readonly>
+            <div class="input-group-append">
+                <span class="input-group-text" id="input-group-sizing-default">Gallon(s)</span>
+            </div>
+        </div>
+    </div>
+</div>
