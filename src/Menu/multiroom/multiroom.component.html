@@ -9,27 +9,24 @@
             <h2>How many rooms?</h2>
         </div>
     </div>
-<!--    <div class="row" style="background-color: transparent;">
-        <div class="col input-group">
-            <select class="form-select shadow" sans-serif-label="Number of rooms">
-                <option *ngFor="let number of numbersArray" [value]="number">{{ number }}</option>
-              </select>
-            <div class="input-group-append shadow">
-                <button type="button" class="btn btn-primary btn ">Go!</button>
-            </div>
-        </div>
-    </div>
-</div>
--->
+
 <div class="dropdown row">
-    <div class="col-4">
+    <div class="">
         <ul>
-            <li (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)">
-                <a class="droptitle" id="menuElem">rooms <img border="0"  src="assets/Images/chevron.png"></a>
+            <li (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)" class="dropmain">
+                <a class="droptitle" id="menuElem">rooms </a>
+                <img border="0"  src="/assets/images/chevron.png" class="chevron">
                     <ul class="list" [class.visible]="isDropdownVisible" style="display: none;" [style.display]="isDropdownVisible ? 'block' : 'none'">
-                        <li *ngFor="let number of numbersArray" [value]="number"><a>{{ number }}</a></li>
+                        <li *ngFor="let number of numbersArray" [value]="number"><!--<a (click)="numberOfRooms = number">{{ number }}</a>--> <a (click)="setNumberOfRooms(number)">{{ number }}</a></li>
                     </ul>
             </li>
         </ul>
     </div>
 </div>
+<p>Number of Rooms: {{ numberOfRooms }}</p>
+<div *ngFor="let room of rooms" class="room-details">
+    <app-rectangle></app-rectangle>
+    </div>
+  </div>
+  <p>total space:{{ totalWallSpace }}</p>
+  <button type="button" class="btn btn-primary" (click)="calculateTotalWallSpace()">Calculate Total Square Footage</button>
