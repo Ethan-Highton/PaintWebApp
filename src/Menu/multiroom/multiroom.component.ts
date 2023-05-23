@@ -14,6 +14,8 @@ export class MultiroomComponent implements AfterViewInit {
   currentRoomIndex: number = 0;
   activeRoomIndex: number = 0;
   totalWallSpace: number = 0;
+  isCalculatingTotalSpace: boolean = false;
+  showTotalSpace: boolean = false;
 
   constructor(private resolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {}
 
@@ -38,31 +40,55 @@ export class MultiroomComponent implements AfterViewInit {
   }
 
   createRooms() {
-    this.rooms = [];
-    this.currentRoomIndex = 0;
-    this.viewContainerRef.clear();
+  this.rooms = [];
+  this.currentRoomIndex = 0;
+  this.viewContainerRef.clear();
 
-    for (let i = 0; i < this.numberOfRooms; i++) {
-      const factory = this.resolver.resolveComponentFactory(RectangleComponent);
-      const componentRef = this.viewContainerRef.createComponent(factory);
-      const room = componentRef.instance as RectangleComponent;
-      this.rooms.push(room);
+  for (let i = 0; i < this.numberOfRooms; i++) {
+    const factory = this.resolver.resolveComponentFactory(RectangleComponent);
+    const componentRef = this.viewContainerRef.createComponent(factory);
+    const room = componentRef.instance as RectangleComponent;
+
+    // Set the isVisible property for each room
+    room.isVisible = i === 0; // Set the first room as visible, and the rest as hidden
+
+    if (i === 0) {
+      this.activeRoomIndex = i;
+      room.nativeElementRef = componentRef.location.nativeElement;
+    } else {
+      room.nativeElementRef = componentRef.location.nativeElement;
+      room.nativeElementRef.style.display = 'none'; // Hide the component element
     }
+
+    this.rooms.push(room);
   }
+}
 
-  nextRoom() {
-    if (this.currentRoomIndex < this.numberOfRooms) {
-      const currentRoom = this.rooms[this.currentRoomIndex];
-      const area = currentRoom.area;
 
-      if (area) {
-        this.currentRoomIndex++;
-        this.activeRoomIndex++;
-      } else {
-        alert("Please enter the area for the current room.");
+nextRoom() {
+  if (this.currentRoomIndex < this.numberOfRooms) {
+    const currentRoom = this.rooms[this.currentRoomIndex];
+    const area = currentRoom.area;
+
+    if (area) {
+      this.currentRoomIndex++;
+      this.activeRoomIndex++;
+
+      if (this.currentRoomIndex > 0) {
+        const previousRoom = this.rooms[this.currentRoomIndex - 1];
+        previousRoom.nativeElementRef.style.display = 'none';
       }
+
+      if (this.currentRoomIndex < this.numberOfRooms) {
+        const nextRoom = this.rooms[this.currentRoomIndex];
+        nextRoom.nativeElementRef.style.display = 'block';
+      }
+    } else {
+      alert('Please enter the area for the current room.');
     }
   }
+}
+
 
   onAreaCalculated(event: Event) {
     const area = +(event.target as HTMLInputElement).value;

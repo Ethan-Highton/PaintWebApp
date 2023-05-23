@@ -17,18 +17,18 @@
                 <a class="droptitle" id="menuElem">rooms </a>
                 <img border="0"  src="/assets/images/chevron.png" class="chevron">
                     <ul class="list" [class.visible]="isDropdownVisible" style="display: none;" [style.display]="isDropdownVisible ? 'block' : 'none'">
-                        <li *ngFor="let number of numbersArray" [value]="number"><!--<a (click)="numberOfRooms = number">{{ number }}</a>--> <a (click)="setNumberOfRooms(number)">{{ number }}</a></li>
+                        <li *ngFor="let number of numbersArray" [value]="number"> <a (click)="setNumberOfRooms(number)">{{ number }}</a></li>
                     </ul>
             </li>
         </ul>
     </div>
 </div>
-<p>Number of Rooms: {{ numberOfRooms }}</p>
+<p>Number of Rooms: {{ numberOfRooms }} currentRoomIndex: {{ currentRoomIndex }}</p>
 <div *ngIf="numberOfRooms && numberOfRooms > 0">
     <div *ngIf="currentRoomIndex < numberOfRooms">
       <button type="button" class="btn btn-primary" (click)="nextRoom()">Next</button>
     </div>
-    <div *ngIf="currentRoomIndex === numberOfRooms">
+    <div *ngIf="currentRoomIndex === numberOfRooms ">
       <p>total space: {{ totalWallSpace }}</p>
       <button type="button" class="btn btn-primary" (click)="calculateTotalWallSpace()">Calculate Total Square Footage</button>
     </div>

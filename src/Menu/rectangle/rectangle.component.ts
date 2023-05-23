@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild,ElementRef, Input} from '@angular/core';
 
 @Component({
   selector: 'app-rectangle',
@@ -13,7 +13,10 @@ export class RectangleComponent {
   gals!: number;
   showResults = false;
   allInputsFilled = false;
-
+  nativeElement: any;
+  @ViewChild('rectangle') rectangleElementRef!: ElementRef;
+  nativeElementRef!: HTMLElement;
+  @Input() isVisible: boolean = false;
 
 
   checkInputs() {
@@ -30,5 +33,6 @@ export class RectangleComponent {
     this.gals = this.area / 400;
   }
 
+  
 }
 
