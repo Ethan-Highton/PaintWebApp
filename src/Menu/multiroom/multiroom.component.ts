@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef, ViewChild } from '@angular/core';
 import { RectangleComponent } from '../rectangle/rectangle.component';
 
 @Component({
@@ -14,6 +14,10 @@ export class MultiroomComponent implements AfterViewInit {
   rooms: RectangleComponent[] = []; 
   numberOfRooms!: number;
   totalWallSpace: number = 0;
+  currentRoomIndex: number = 0;
+  activeRoomIndex: number = 0;
+
+  @ViewChild('container', { read: ViewContainerRef }) container!: ViewContainerRef;
   
   ngAfterViewInit() {
     const menuLi = document.querySelector("#menuElem > li:nth-child(1)");
@@ -28,18 +32,35 @@ export class MultiroomComponent implements AfterViewInit {
   hideDropdown(event: MouseEvent) {
     this.isDropdownVisible = false;
   }
-  updateRoomWallSpace(roomIndex: number, wallSpace: number) {
-    // Handle the wall space update for the specific room
-  }
+
   setNumberOfRooms(value: number) {
     this.numberOfRooms = value;
-    if (this.numberOfRooms && this.numberOfRooms > 0) {
-      this.createRooms();
-    }
+    this.currentRoomIndex = 0;
+    this.activeRoomIndex = 0;
+    this.rooms = [];
+    this.createRooms();
   }
 
+  constructor(private resolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {}
+  
   createRooms() {
-    this.rooms = Array.from({ length: this.numberOfRooms }, () => new RectangleComponent());
+    this.rooms = [];
+  
+    for (let i = 0; i < this.numberOfRooms; i++) {
+      const factory = this.resolver.resolveComponentFactory(RectangleComponent);
+      const componentRef = this.viewContainerRef.createComponent(factory);
+      const room = componentRef.instance as RectangleComponent;
+      this.rooms.push(room);
+    }
+  }
+  nextRoom() {
+    if (this.currentRoomIndex < this.numberOfRooms) {
+      this.currentRoomIndex++;
+      this.activeRoomIndex++;
+    }
+  }
+  onAreaCalculated(area: number) {
+    this.rooms[this.currentRoomIndex - 1].area = area;
   }
 
   calculateTotalWallSpace() {
