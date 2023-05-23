@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef, ElementRef, Renderer2 } from '@angular/core';
 import { RectangleComponent } from '../rectangle/rectangle.component';
 
 @Component({
@@ -16,8 +16,10 @@ export class MultiroomComponent implements AfterViewInit {
   totalWallSpace: number = 0;
   isCalculatingTotalSpace: boolean = false;
   showTotalSpace: boolean = false;
+  showCalculateButton = true;
 
   constructor(private resolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {}
+  
 
   ngAfterViewInit() {
     const menuLi = document.querySelector("#menuElem > li:nth-child(1)");
@@ -100,6 +102,7 @@ nextRoom() {
     for (const room of this.rooms) {
       this.totalWallSpace += room.area;
     }
-    return this.totalWallSpace;
+    this.showTotalSpace = true; 
+    this.showCalculateButton = false;
   }
 }
