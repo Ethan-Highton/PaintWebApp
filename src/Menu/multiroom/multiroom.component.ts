@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef, ElementRef, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import { RectangleComponent } from '../rectangle/rectangle.component';
 
 @Component({
@@ -17,8 +17,11 @@ export class MultiroomComponent implements AfterViewInit {
   isCalculatingTotalSpace: boolean = false;
   showTotalSpace: boolean = false;
   showCalculateButton = true;
-
-  constructor(private resolver: ComponentFactoryResolver, private viewContainerRef: ViewContainerRef) {}
+  @ViewChild('roomsContainer') roomsContainer!: ElementRef;
+  constructor(
+  private resolver: ComponentFactoryResolver,
+  private viewContainerRef: ViewContainerRef,
+) {}
   
 
   ngAfterViewInit() {
