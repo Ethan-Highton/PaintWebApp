@@ -17,12 +17,14 @@ export class MultiroomComponent implements AfterViewInit {
   isCalculatingTotalSpace: boolean = false;
   showTotalSpace: boolean = false;
   showCalculateButton = true;
+
   @ViewChild('roomsContainer') roomsContainer!: ElementRef;
+  @ViewChild(RectangleComponent) rectangleComponent!: RectangleComponent;
   constructor(
   private resolver: ComponentFactoryResolver,
   private viewContainerRef: ViewContainerRef,
 ) {}
-  
+
 
   ngAfterViewInit() {
     const menuLi = document.querySelector("#menuElem > li:nth-child(1)");
@@ -56,7 +58,8 @@ export class MultiroomComponent implements AfterViewInit {
 
     // Set the isVisible property for each room
     room.isVisible = i === 0; // Set the first room as visible, and the rest as hidden
-
+    room.nextButtonClicked.subscribe(() => this.nextRoom());
+    room.showNextButton = true;
     if (i === 0) {
       this.activeRoomIndex = i;
       room.nativeElementRef = componentRef.location.nativeElement;
@@ -68,7 +71,6 @@ export class MultiroomComponent implements AfterViewInit {
     this.rooms.push(room);
   }
 }
-
 
 nextRoom() {
   if (this.currentRoomIndex < this.numberOfRooms) {
@@ -105,7 +107,7 @@ nextRoom() {
     for (const room of this.rooms) {
       this.totalWallSpace += room.area;
     }
-    this.showTotalSpace = true; 
+    this.showTotalSpace = true;
     this.showCalculateButton = false;
   }
 }

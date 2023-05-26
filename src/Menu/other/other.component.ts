@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, Input, ViewChild} from '@angular/core';
 
 @Component({
   selector: 'app-other',
@@ -9,6 +9,16 @@ export class OtherComponent {
   numbersArray: number[] = Array.from({ length: 4 }, (_, i) => i + 3);
   isDropdownVisible = false;
   numberOfWalls!: number;
+  width!: number;
+  height!: number;
+  area!: number;
+  gals!: number;
+  showResults = false;
+  allInputsFilled = false;
+  nativeElement: any;
+  @ViewChild('rectangle') rectangleElementRef!: ElementRef;
+  nativeElementRef!: HTMLElement;
+  @Input() isVisible: boolean = false;
 
   showDropdown(event: MouseEvent) {
     this.isDropdownVisible = true;
@@ -23,4 +33,24 @@ export class OtherComponent {
     //this.activeRoomIndex = 0;
     //this.createRooms();
   }
+
+
+
+  checkInputs() {
+    if (this.width && this.height) {
+      this.allInputsFilled = true;
+    } else {
+      this.allInputsFilled = false;
+    }
+  }
+
+  calculate() {
+    this.area = this.width * this.height;
+    this.showResults = true;
+    this.gals = this.area / 400;
+  }
+
+
 }
+
+

@@ -1,4 +1,4 @@
-import { Component, ViewChild,ElementRef, Input} from '@angular/core';
+import { Component, ViewChild,ElementRef, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'app-rectangle',
@@ -17,6 +17,8 @@ export class RectangleComponent {
   @ViewChild('rectangle') rectangleElementRef!: ElementRef;
   nativeElementRef!: HTMLElement;
   @Input() isVisible: boolean = false;
+  @Output() nextButtonClicked = new EventEmitter<void>();
+  @Input() showNextButton: boolean = false;
 
 
   checkInputs() {
@@ -33,6 +35,6 @@ export class RectangleComponent {
     this.gals = this.area / 400;
   }
 
-  
+
 }
 

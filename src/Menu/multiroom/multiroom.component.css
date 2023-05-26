@@ -16,6 +16,8 @@
     padding: 0;
     margin: 0;
     float: left;
+    margin-bottom: 0.6em;
+    z-index: 999999;
   }
 
 .droptitle {

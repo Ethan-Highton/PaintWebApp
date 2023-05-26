@@ -68,7 +68,7 @@
             <button type="button" class="btn btn-primary btn-lg">Next</button>
         </div>
     </div>
-    
+
 </div>
 -->
 <!DOCTYPE html>
@@ -118,6 +118,9 @@
         <button type="button" class="btn btn-primary btn" style="width: 100%;" [disabled]="!allInputsFilled"
           (click)="calculate(); showResults = true">Submit</button>
       </div>
+      <div class="col-4">
+        <button *ngIf="showNextButton" type="button" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Next</button>
+      </div>
     </div>
     <div class="row">
       <div class="col">
@@ -146,10 +149,10 @@
         </div>
     </div>
   </div>
-  
-  
-   
-  
 
-  
-  
+
+
+
+
+
+

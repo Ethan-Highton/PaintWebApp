@@ -23,18 +23,25 @@
         </ul>
     </div>
 </div>
-<p>Number of Rooms: {{ numberOfRooms }} </p>
 <div class="container" #roomsContainer></div>
-<div class="row">
-    <div class="col">
-        <div *ngIf="numberOfRooms && numberOfRooms > 0">
-            <div *ngIf="currentRoomIndex < numberOfRooms">
-            <button type="button" class="btn btn-primary" (click)="nextRoom()">Next</button>
-            </div>
-            <div *ngIf="currentRoomIndex === numberOfRooms ">
-            <p>total space: {{ totalWallSpace }}</p>
-            <button type="button" class="btn btn-primary" (click)="calculateTotalWallSpace()">Calculate Total Square Footage</button>
-            </div>
+  <div *ngIf="numberOfRooms && numberOfRooms > 0">
+    <div *ngIf="currentRoomIndex < numberOfRooms">
+      <div class="row justify-content-between">
+        <div class="col">
+          <h1>Room {{ currentRoomIndex + 1 }} out of {{numberOfRooms}}</h1>
         </div>
+      </div>
     </div>
+  </div>
+  <div *ngIf="currentRoomIndex === numberOfRooms " class="results row">
+    <div class="col">
+      <button type="button" class="btn btn-primary" (click)="calculateTotalWallSpace()">Calculate Total Square Footage</button>
+    </div>
+    <div class="col">
+      <p>total space: {{ totalWallSpace }}</p>
+    </div>
+  </div>
 </div>
+
+
+
