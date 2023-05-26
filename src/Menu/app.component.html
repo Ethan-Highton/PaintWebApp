@@ -2,7 +2,15 @@
  <link rel="stylesheet" href="/src/styles.css">
 </head>
 <body>
-    <div class="">
+    <div class="container">
+      <div class="row Navi ">
+        <div class="col">
+          <div class="navtit d-flex">
+            <a href="/" class="navlink">Home</a>
+            <span>&nbsp;{{ pageTitle }}</span>
+          </div>
+        </div>
+      </div>
         <router-outlet>
         </router-outlet>
     </div>

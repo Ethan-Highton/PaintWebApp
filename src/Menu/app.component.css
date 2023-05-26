@@ -1,0 +1,17 @@
+.navtit {
+  color: #012169;
+  font-family: HelveticaNeueW01-55Roma,Helvetica,Arial,sans-serif;
+  font-size: 0.8125em;
+  border-bottom: solid 1px #cccccc;
+  display: block;
+  padding: 13px 0px;
+  text-decoration: none;
+}
+.navlink{
+  color: #012169;
+  text-decoration: none;
+}
+a:hover{
+  color: #00a3e3!important;
+}
+

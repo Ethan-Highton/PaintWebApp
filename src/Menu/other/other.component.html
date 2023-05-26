@@ -1,1 +1,25 @@
-<h1 class="row">WORK IN PROGRESS</h1>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h2>How many walls?</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <p>The first step is Choosing the amount of walls in the room</p>
+        </div>
+    </div>
+    <div class="dropdown row">
+        <div class="">
+            <ul>
+                <li (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)" class="dropmain">
+                    <a class="droptitle" id="menuElem">Walls </a>
+                    <img border="0"  src="/assets/images/chevron.png" class="chevron">
+                    <ul class="list" [class.visible]="isDropdownVisible" style="display: none;" [style.display]="isDropdownVisible ? 'block' : 'none'">
+                        <li *ngFor="let number of numbersArray" [value]="number"> <a (click)="setNumberOfWalls(number)">{{ number }}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -17,7 +17,7 @@
     margin: 0;
     float: left;
   }
-  
+
 .droptitle {
     -webkit-text-size-adjust: 100%;
     font-weight: normal;
@@ -78,7 +78,7 @@ li .list a {
     border-right: solid 1px #cccccc;
     background-image: none;
     background-color:#ffffff;
-    margin-left: 3em;
+    margin-left: 2.2em;
 }
 
 .chevron {
