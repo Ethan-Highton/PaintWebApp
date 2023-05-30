@@ -13,9 +13,12 @@ export class RectangleComponent {
   gals!: number;
   showResults = false;
   allInputsFilled = false;
-  scale: number = 12; //
+  scale: number = 15; //
   genWidth: number = 0;
   genLength: number = 0;
+  genHeight: number = 0;
+  cubeTransform: string = '';
+
   nativeElement: any;
   @ViewChild('rectangle') rectangleElementRef!: ElementRef;
   nativeElementRef!: HTMLElement;
@@ -29,6 +32,9 @@ export class RectangleComponent {
 
   getLengthInPixels() {
      this.genLength = this.length * this.scale;
+  }
+  getHeightInPixels() {
+    this.genHeight = this.height * this.scale;
   }
   checkInputs() {
     if (this.width && this.length && this.height) {
@@ -44,6 +50,7 @@ export class RectangleComponent {
     this.gals = this.area / 400;
     console.log(this.area)
   }
+
 
 
 }

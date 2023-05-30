@@ -2,3 +2,71 @@
   background-color: transparent;
   border: 1px solid #012169;
 }
+.model {
+  perspective: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.cube {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  transform-style: preserve-3d;
+
+}
+
+/*.xface {
+  position: absolute;
+  border: 1px solid #012169;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  opacity: 0.8;
+}
+.yface {
+  position: absolute;
+  border: 1px solid #012169;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  opacity: 0.8;
+}
+.zface {
+  position: absolute;
+  border: 1px solid #012169;
+  width: 200px;
+  height: 200px;
+  box-sizing: border-box;
+  opacity: 0.8;
+}
+.front {
+  transform: translateZ(100px);
+}
+
+.back {
+  transform: translateZ(-100px) rotateY(180deg);
+}
+
+.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}*/
+
+
+
+
+
