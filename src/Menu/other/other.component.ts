@@ -9,10 +9,12 @@ export class OtherComponent {
   numbersArray: number[] = Array.from({ length: 4 }, (_, i) => i + 3);
   isDropdownVisible = false;
   numberOfWalls!: number;
-  width!: number;
-  height!: number;
+  currentWallIndex: number = 0;
+  width!: number | null;
+  height!: number | null;
   area!: number;
   gals!: number;
+  totalArea: number = 0;
   showResults = false;
   allInputsFilled = false;
   nativeElement: any;
@@ -29,7 +31,7 @@ export class OtherComponent {
   }
   setNumberOfWalls(value: number) {
     this.numberOfWalls = value;
-    //this.currentRoomIndex = 0;
+    this.currentWallIndex = 1;
     //this.activeRoomIndex = 0;
     //this.createRooms();
   }
@@ -43,12 +45,21 @@ export class OtherComponent {
       this.allInputsFilled = false;
     }
   }
-
-  calculate() {
-    this.area = this.width * this.height;
-    this.showResults = true;
-    this.gals = this.area / 400;
+  nextWall(){
+    this.area = this.width! * this.height!;
+    this.totalArea += this.area ;
+    if (this.area){
+      this.currentWallIndex++;
+      console.log(this.totalArea)
+      this.width = null;
+      this.height = null;
+    }
+    else {
+      alert("Please enter all dimensions.")
+    }
   }
+
+
 
 
 }

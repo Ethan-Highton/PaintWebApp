@@ -1,76 +1,4 @@
-<!--
-    <div class="row">
-    <h2 class="col">All we need now are the dimensions!</h2>
-</div>
-<div class="row">
-    <p class="col">Please fill out the following:</p>
-</div>
-<div class="row">
-    <div class="col input-group mb-3">
-        <div class="inpug-group-prepend">
-            <span class="input-group-text" id="input-group-sizing-default">Width(ft)</span>
-        </div>
-        <input type="text" class="form-control" id="width1" sans-serif-describedby="input-group-sizing-default" [(ngModel)]="width" (input)="checkInputs()">
-    </div>
-</div>
-<div class="row">
-    <div class="col input-group mb-3">
-        <div class="inpug-group-prepend">
-            <span class="input-group-text" id="input-group-sizing-default">Length(ft)</span>
-        </div>
-        <input type="text" class="form-control" id="length1" sans-serif-describedby="input-group-sizing-default" [(ngModel)]="length" (input)="checkInputs()" >
-    </div>
-</div>
-<div class="row">
-    <div class="col input-group mb-3">
-        <div class="inpug-group-prepend">
-            <span class="input-group-text" id="input-group-sizing-default">Height(ft)</span>
-        </div>
-        <input type="text" class="form-control" id="Height1" sans-serif-describedby="input-group-sizing-default" [(ngModel)]="height" (input)="checkInputs()" >
-    </div>
-</div>
-<div class="row mb-3 ">
-    <div class="col-4 ">
-        <button type="button" class="btn btn-primary btn" style="width: 100%;" [disabled]="!allInputsFilled" (click)="calculate(); showResults = true">Submit</button>
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-        <div class="hr"></div>
-    </div>
-</div>
 
-<div class="results" *ngIf="showResults">
-    <div class="row">
-        <div class=" input-group mb-3 col-3">
-            <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; " [value]="area" readonly>
-            <div class="input-group-append">
-                <span class="input-group-text" id="input-group-sizing-default">Sqft</span>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <p class="col">Per coat you will need:</p>
-    </div>
-    <div class="row">
-        <div class=" input-group mb-3 col-3">
-            <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; " [value]="gals" readonly>
-            <div class="input-group-append">
-                <span class="input-group-text" id="input-group-sizing-default">Gallon(s)</span>
-            </div>
-        </div>
-    </div>
-    <div class="row justify-content-between">
-        <div class="col-5">
-            <button type="button" class="btn btn-primary btn-lg">Back</button>
-        </div>
-        <div class="col-5">
-            <button type="button" class="btn btn-primary btn-lg">Next</button>
-        </div>
-    </div>
-
-</div>
--->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,7 +35,7 @@
     </div>
     <div class="row">
       <div class="col input-group mb-3">
-        <div class="inpug-group-prepend">
+        <div class="input-group-prepend">
           <span class="input-group-text" id="input-group-sizing-default">Height(ft)</span>
         </div>
         <input type="text" class="form-control" id="height1" [(ngModel)]="height" (input)="checkInputs()">
@@ -116,7 +44,7 @@
     <div class="row mb-3">
       <div class="col-4">
         <button type="button" class="btn btn-primary btn" style="width: 100%;" [disabled]="!allInputsFilled"
-          (click)="calculate(); showResults = true">Submit</button>
+          (click)="calculate(); showResults = true; getLengthInPixels(); getWidthInPixels()">Submit</button>
       </div>
       <div class="col-4">
         <button *ngIf="showNextButton" type="button" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Next</button>
@@ -128,27 +56,37 @@
       </div>
     </div>
     <div class="results" *ngIf="showResults">
-      <div class="row">
-        <div class="input-group mb-3 col-3">
-          <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
-            [value]="area" readonly>
-          <div class="input-group-append">
-            <span class="input-group-text" id="input-group-sizing-default">Sqft</span>
+      <div class="row p-0">
+        <div class="col p-0">
+          <div class="row">
+            <div class="input-group mb-3 col-3" id="area">
+              <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
+                [value]="area" readonly>
+              <div class="input-group-append">
+                <span class="input-group-text" id="input-group-sizing-default">Sqft</span>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <p class="col" style="margin-bottom: 1em">Per coat you will need:</p>
+          </div>
+          <div class="row">
+            <div class="input-group mb-3 col-3">
+              <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
+                [value]="gals" readonly>
+              <div class="input-group-append">
+                <span class="input-group-text" id="input-group-sizing-default">Gallon(s)</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <p class="col">Per coat you will need:</p>
-      </div>
-      <div class="row">
-        <div class="input-group mb-3 col-3">
-          <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
-            [value]="gals" readonly>
-          <div class="input-group-append">
-            <span class="input-group-text" id="input-group-sizing-default">Gallon(s)</span>
+        <div class="col d-flex justify-content-center align-items-center">
+          <div class="rectangle" [style.width.px]="genWidth" [style.height.px]="genLength"></div>
         </div>
+      </div>
     </div>
   </div>
+</body>
 
 
 

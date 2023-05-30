@@ -14,8 +14,6 @@
   list-style-type: none; /* Remove bullet points */
   background-image: none;
   padding: 0;
-  margin: 0;
-  float: left;
   margin-bottom: 0.6em;
   z-index: 9999999;
 }
@@ -99,3 +97,26 @@ ul .list li:hover a {
 }
 
 .after {margin-top: 20px;}
+
+.resultHead {
+  color: #fff;
+  background-color: #00a3e4;
+  width: fit-content;
+  border-radius: 0px 0px 10px 0px;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-right: 2em;
+  padding-left: 2em;
+  font-size: 1.25rem;
+  text-align: center;
+  margin-block-end: 0;
+
+}
+.resultInput {
+  color: #012169;
+  background-color: #ffffff;
+  padding-left: 0;
+  font-size: 1.25rem;
+  text-align: center;
+  margin-block-end: 0;
+}

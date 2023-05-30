@@ -86,6 +86,7 @@ nextRoom() {
         previousRoom.nativeElementRef.style.display = 'none';
       }
 
+
       if (this.currentRoomIndex < this.numberOfRooms) {
         const nextRoom = this.rooms[this.currentRoomIndex];
         nextRoom.nativeElementRef.style.display = 'block';

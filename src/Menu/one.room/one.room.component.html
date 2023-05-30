@@ -9,7 +9,7 @@
         <div class="col-5">
           <div class="shape btn-group btn-group-toggle d-flex flex-column" data-toggle="buttons">
             <label class="btn btn-primary btn-lg" [class.active]="selectedOption === 'rectangle'">
-              <input type="radio" name="shape" id="rectangle" [checked]="selectedOption === 'rectangle'" (click)="updateSelectedOption('rectangle')">
+              <input type="radio" name="shape" id="rectangle" [checked]="selectedOption === 'rectangle'" (click)="updateSelectedOption('rectangle')" class="btn-check">
               Rectangular
             </label>
           </div>
@@ -17,7 +17,7 @@
         <div class="col-5">
           <div class="shape btn-group btn-group-toggle d-flex flex-column" data-toggle="buttons">
             <label class="btn btn-primary btn-lg" [class.active]="selectedOption === 'other'">
-              <input type="radio" name="shape" id="Other" [checked]="selectedOption === 'other'" (click)="updateSelectedOption('other')">
+              <input type="radio" name="shape" id="Other" [checked]="selectedOption === 'other'" (click)="updateSelectedOption('other')" class="btn-check">
               Other
             </label>
           </div>
@@ -32,7 +32,7 @@
         <ng-container *ngIf="selectedOption === 'rectangle'">
             <app-rectangle></app-rectangle>
         </ng-container>
-        
+
         <ng-container *ngIf="selectedOption === 'other'">
             <app-other></app-other>
         </ng-container>

@@ -13,6 +13,9 @@ export class RectangleComponent {
   gals!: number;
   showResults = false;
   allInputsFilled = false;
+  scale: number = 12; //
+  genWidth: number = 0;
+  genLength: number = 0;
   nativeElement: any;
   @ViewChild('rectangle') rectangleElementRef!: ElementRef;
   nativeElementRef!: HTMLElement;
@@ -20,7 +23,13 @@ export class RectangleComponent {
   @Output() nextButtonClicked = new EventEmitter<void>();
   @Input() showNextButton: boolean = false;
 
+  getWidthInPixels() {
+    this.genWidth = this.width * this.scale;
+  }
 
+  getLengthInPixels() {
+     this.genLength = this.length * this.scale;
+  }
   checkInputs() {
     if (this.width && this.length && this.height) {
       this.allInputsFilled = true;
@@ -33,6 +42,7 @@ export class RectangleComponent {
     this.area = 2 * (this.width * this.height) + 2 * (this.length * this.height);
     this.showResults = true;
     this.gals = this.area / 400;
+    console.log(this.area)
   }
 
 

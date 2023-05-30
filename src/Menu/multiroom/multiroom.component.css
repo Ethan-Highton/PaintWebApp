@@ -16,7 +16,7 @@
     padding: 0;
     margin: 0;
     float: left;
-    margin-bottom: 0.6em;
+    margin-bottom: 0.6em !important;
     z-index: 999999;
   }
 
@@ -80,7 +80,6 @@ li .list a {
     border-right: solid 1px #cccccc;
     background-image: none;
     background-color:#ffffff;
-    margin-left: 2.2em;
 }
 
 .chevron {

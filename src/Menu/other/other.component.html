@@ -9,9 +9,9 @@
             <p>The first step is Choosing the amount of walls in the room</p>
         </div>
     </div>
-    <div class="dropdown row">
-        <div class="">
-            <ul>
+    <div class="row ">
+        <div class="col d-flex">
+            <ul class="dropdown">
                 <li (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)" class="dropmain">
                     <a class="droptitle" id="menuElem">Walls </a>
                     <img border="0"  src="/assets/images/chevron.png" class="chevron">
@@ -23,21 +23,45 @@
         </div>
     </div>
 </div>
-    <div class="container">
+<div class="container" *ngIf="numberOfWalls && numberOfWalls > 0 && currentWallIndex <= numberOfWalls">
     <div class="row">
+        <div class="col">
+            <h2>Wall {{currentWallIndex}} of {{numberOfWalls}}</h2>
+        </div>
+    </div>
+    <div class="row width">
         <div class="col input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" >Width(ft)</span>
             </div>
-            <input type="text" class="form-control" id="width1" [(ngModel)]="width" (input)="checkInputs()">
+            <input type="text" class="form-control" id="width" [(ngModel)]="width" (input)="checkInputs()">
         </div>
     </div>
-    <div class="row">
+    <div class="row height">
         <div class="col input-group mb-3">
             <div class="input-group-prepend">
                 <span class="input-group-text" >Height(ft)</span>
             </div>
-            <input type="text" class="form-control" id="height1" [(ngModel)]="height" (input)="checkInputs()">
+            <input type="text" class="form-control" id="height" [(ngModel)]="height" (input)="checkInputs()">
         </div>
     </div>
+    <div class="row next">
+        <div class="col">
+            <button class="btn btn-primary" type="submit" (click)="nextWall()">Next</button>
+        </div>
+    </div>
+</div>
+<div class="container" *ngIf="currentWallIndex > numberOfWalls">
+  <div class="row justify-content-start">
+    <div class="row">
+      <div class="col-lg-auto p-0" style="background-color: #ffffff" >
+        <h2 class="resultHead">Total Area</h2>
+      </div>
+        <div class="col-lg-2 mb-0 resultInput d-flex align-items-center text-center justify-content-center pl-0">
+          <div class="input-group-append input-group">
+          <h2 class="mb-0 resultInput">{{totalArea}} Sqft</h2>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
