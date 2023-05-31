@@ -17,6 +17,7 @@ export class MultiroomComponent implements AfterViewInit {
   isCalculatingTotalSpace: boolean = false;
   showTotalSpace: boolean = false;
   showCalculateButton = true;
+  area!: number;
 
   @ViewChild('roomsContainer') roomsContainer!: ElementRef;
   @ViewChild(RectangleComponent) rectangleComponent!: RectangleComponent;
@@ -43,10 +44,9 @@ export class MultiroomComponent implements AfterViewInit {
     this.numberOfRooms = value;
     this.currentRoomIndex = 0;
     this.activeRoomIndex = 0;
-    this.createRooms();
   }
 
-  createRooms() {
+ /** createRooms() {
   this.rooms = [];
   this.currentRoomIndex = 0;
   this.viewContainerRef.clear();
@@ -70,38 +70,30 @@ export class MultiroomComponent implements AfterViewInit {
 
     this.rooms.push(room);
   }
-}
+}**/
+handleArea(value: number){
+  this.area = value;
+ }
 
 nextRoom() {
   if (this.currentRoomIndex < this.numberOfRooms) {
-    const currentRoom = this.rooms[this.currentRoomIndex];
-    const area = currentRoom.area;
-
-    if (area) {
-      this.currentRoomIndex++;
-      this.activeRoomIndex++;
-
-      if (this.currentRoomIndex > 0) {
-        const previousRoom = this.rooms[this.currentRoomIndex - 1];
-        previousRoom.nativeElementRef.style.display = 'none';
-      }
 
 
-      if (this.currentRoomIndex < this.numberOfRooms) {
-        const nextRoom = this.rooms[this.currentRoomIndex];
-        nextRoom.nativeElementRef.style.display = 'block';
-      }
-    } else {
+    if (this.area){
+      alert('working')
+    }
+
+
+    else {
       alert('Please enter the area for the current room.');
     }
+  } else {
+    alert('broke')
   }
 }
 
 
-  onAreaCalculated(event: Event) {
-    const area = +(event.target as HTMLInputElement).value;
-    this.rooms[this.currentRoomIndex - 1].area = area;
-  }
+
 
   calculateTotalWallSpace() {
     this.totalWallSpace = 0;

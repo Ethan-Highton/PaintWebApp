@@ -23,7 +23,6 @@
         </ul>
     </div>
 </div>
-<div class="container" #roomsContainer></div>
   <div *ngIf="numberOfRooms && numberOfRooms > 0">
     <div *ngIf="currentRoomIndex < numberOfRooms">
       <div class="row justify-content-between">
@@ -41,6 +40,9 @@
       <p>total space: {{ totalWallSpace }}</p>
     </div>
   </div>
+</div>
+<div class="container" *ngIf="numberOfRooms && numberOfRooms > 0">
+  <app-rectangle [showNextButton]="true" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)"></app-rectangle>
 </div>
 
 

@@ -23,8 +23,10 @@ export class RectangleComponent {
   @ViewChild('rectangle') rectangleElementRef!: ElementRef;
   nativeElementRef!: HTMLElement;
   @Input() isVisible: boolean = false;
-  @Output() nextButtonClicked = new EventEmitter<void>();
+  @Output() nextButtonClicked = new EventEmitter<number>();
   @Input() showNextButton: boolean = false;
+  @Output() areaCalculated = new EventEmitter<number>();
+
 
   getWidthInPixels() {
     this.genWidth = this.width * this.scale;
@@ -49,6 +51,7 @@ export class RectangleComponent {
     this.showResults = true;
     this.gals = this.area / 400;
     console.log(this.area)
+    this.areaCalculated.emit(this.area);
   }
 
 
