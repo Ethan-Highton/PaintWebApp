@@ -10,6 +10,11 @@ import { HomeComponent } from './home/home.component';
 import { MultiroomComponent } from './multiroom/multiroom.component';
 import { RectangleComponent } from './rectangle/rectangle.component';
 import { OtherComponent } from './other/other.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
+import { providePerformance,getPerformance } from '@angular/fire/performance';
+import { provideAuth,getAuth } from '@angular/fire/auth';
 
 const appRoute: Routes = [
   {path: "", component: HomeComponent},
@@ -29,9 +34,16 @@ const appRoute: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(appRoute),
-    FormsModule
+    FormsModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+
+    provideAnalytics(() => getAnalytics()),
+    providePerformance(() => getPerformance()),
+    provideAuth(() => getAuth())
   ],
-  providers: [],
+  providers: [
+    ScreenTrackingService,UserTrackingService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

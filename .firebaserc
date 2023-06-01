@@ -1,4 +1,13 @@
 {
+  "targets": {
+    "paintapp-6c16e": {
+      "hosting": {
+        "PaintWebApp": [
+          "paintapp-6c16e"
+        ]
+      }
+    }
+  },
   "projects": {
     "default": "paintapp-6c16e"
   }
