@@ -6,11 +6,11 @@ import { Component, ViewChild,ElementRef, Input, Output, EventEmitter} from '@an
   styleUrls: ['./rectangle.component.css']
 })
 export class RectangleComponent {
-  width!: number;
-  length!: number;
-  height!: number;
-  area!: number;
-  gals!: number;
+  width: number | null = null;
+  length: number | null = null;
+  height: number | null = null;
+  area: number | null = null;
+  gals: number | null = null;
   showResults = false;
   allInputsFilled = false;
   scale: number = 15; //
@@ -26,17 +26,24 @@ export class RectangleComponent {
   @Output() nextButtonClicked = new EventEmitter<number>();
   @Input() showNextButton: boolean = false;
   @Output() areaCalculated = new EventEmitter<number>();
+  @Input() showResultButton: boolean = false;
 
-
+reset(){
+  this.width = null;
+  this.gals = null;
+  this.length = null;
+  this.height = null;
+  this.area = null;
+}
   getWidthInPixels() {
-    this.genWidth = this.width * this.scale;
+    this.genWidth = this.width! * this.scale;
   }
 
   getLengthInPixels() {
-     this.genLength = this.length * this.scale;
+     this.genLength = this.length! * this.scale;
   }
   getHeightInPixels() {
-    this.genHeight = this.height * this.scale;
+    this.genHeight = this.height! * this.scale;
   }
   checkInputs() {
     if (this.width && this.length && this.height) {
@@ -47,7 +54,7 @@ export class RectangleComponent {
   }
 
   calculate() {
-    this.area = 2 * (this.width * this.height) + 2 * (this.length * this.height);
+    this.area = 2 * (this.width! * this.height!) + 2 * (this.length! * this.height!);
     this.showResults = true;
     this.gals = this.area / 400;
     console.log(this.area)

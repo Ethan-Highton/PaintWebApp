@@ -32,18 +32,50 @@
       </div>
     </div>
   </div>
-  <div *ngIf="currentRoomIndex === numberOfRooms " class="results row">
-    <div class="col">
-      <button type="button" class="btn btn-primary" (click)="calculateTotalWallSpace()">Calculate Total Square Footage</button>
+  <div class="container" *ngIf="numberOfRooms && numberOfRooms > 0 && currentRoomIndex < numberOfRooms">
+    <app-rectangle [showNextButton]="true" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)"></app-rectangle>
+  </div>
+  <div *ngIf="currentRoomIndex === numberOfRooms " class="results container">
+    <div class="row">
+      <div class="col">
+        <p>total space: {{ totalArea }}</p>
+      </div>
     </div>
-    <div class="col">
-      <p>total space: {{ totalWallSpace }}</p>
+    <div class="row">
+      <div class="col">
+        <table class="table">
+          <thead class="thead bg-primary">
+            <tr>
+              <th scope="col" class="">Room</th>
+              <th scope="col" class="text-center">Height</th>
+              <th scope="col" class="text-center">Width</th>
+              <th scope="col" class="text-center">Length</th>
+              <th scope="col" class="text-center">area</th>
+              <th scope="col" class="text-center">gals/coat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let number of roomsArray; let i = index">
+              <th scope="row" >{{number}}</th>
+              <td class="text-center">{{heightArray[i]}}</td>
+              <td class="text-center">{{widthArray[i]}}</td>
+              <td class="text-center">{{lengthArray[i]}}</td>
+              <td class="text-center">{{areaArray[i]}}</td>
+              <td class="text-center">{{galArray[i]}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
+
 </div>
-<div class="container" *ngIf="numberOfRooms && numberOfRooms > 0">
-  <app-rectangle [showNextButton]="true" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)"></app-rectangle>
-</div>
+
+<!--<div class="debug">
+  <p>area: {{ area }}</p>
+  <p>currentRoomIndex: {{ currentRoomIndex }}</p>
+  <p>numberOfRooms: {{numberOfRooms}}</p>
+</div>-->
 
 
 

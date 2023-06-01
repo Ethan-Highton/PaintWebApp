@@ -45,11 +45,16 @@ p {
 }
 
 .btn-primary {
-background-color: #00a3e4;
-border-color: #00a3e4;
-display: block;
-position: relative;
-border-radius: 0px 0px 10px 0px;
+  background-color: #00a3e4;
+  border-color: #00a3e4;
+  display: block;
+  position: relative;
+  border-radius: 0px 0px 10px 0px;
+}
+.bg-primary {
+  background-color: #00a3e4;
+  border-color: #00a3e4;
+  color: #ffffff;
 }
 
 .hr {
