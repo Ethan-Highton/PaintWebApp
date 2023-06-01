@@ -16,7 +16,7 @@
             <li (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)" class="dropmain">
                 <a class="droptitle" id="menuElem">rooms </a>
                 <img border="0"  src="/assets/images/chevron.png" class="chevron">
-                    <ul class="list" [class.visible]="isDropdownVisible" style="display: none;" [style.display]="isDropdownVisible ? 'block' : 'none'">
+                    <ul class="list" [class.visible]="isDropdownVisible" style="display: none;" [style.display]="isDropdownVisible ? 'block' : 'none'" >
                         <li *ngFor="let number of numbersArray" [value]="number"> <a (click)="setNumberOfRooms(number)">{{ number }}</a></li>
                     </ul>
             </li>
@@ -36,9 +36,28 @@
     <app-rectangle [showNextButton]="true" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)"></app-rectangle>
   </div>
   <div *ngIf="currentRoomIndex === numberOfRooms " class="results container">
-    <div class="row">
-      <div class="col">
-        <p>total space: {{ totalArea }}</p>
+    <div class="row justify-content-start totals">
+      <div class="row">
+        <div class="col-lg-auto p-0" style="background-color: #ffffff" >
+          <h2 class="resultHead">Total Area</h2>
+        </div>
+        <div class="col-lg-2 mb-0 resultInput d-flex align-items-center text-center justify-content-center pl-0">
+          <div class="input-group-append input-group">
+            <h2 class="mb-0 resultInput">{{totalArea}} Sqft</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-start totals">
+      <div class="row">
+        <div class="col-lg-auto p-0" style="background-color: #ffffff" >
+          <h2 class="resultHead">Total Gals</h2>
+        </div>
+        <div class="col-lg-2 mb-0 resultInput d-flex align-items-center text-center justify-content-center pl-0">
+          <div class="input-group-append input-group">
+            <h2 class="mb-0 resultInput">{{totalArea / 400}} Gals</h2>
+          </div>
+        </div>
       </div>
     </div>
     <div class="row">

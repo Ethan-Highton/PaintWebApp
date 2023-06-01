@@ -15,7 +15,7 @@ import { environment } from '../environments/environment';
 import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
 import { providePerformance,getPerformance } from '@angular/fire/performance';
 import { provideAuth,getAuth } from '@angular/fire/auth';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 const appRoute: Routes = [
   {path: "", component: HomeComponent},
   {path: 'home', component: HomeComponent},
@@ -33,6 +33,7 @@ const appRoute: Routes = [
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoute),
     FormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -40,6 +41,7 @@ const appRoute: Routes = [
     provideAnalytics(() => getAnalytics()),
     providePerformance(() => getPerformance()),
     provideAuth(() => getAuth())
+
   ],
   providers: [
     ScreenTrackingService,UserTrackingService

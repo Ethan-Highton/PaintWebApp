@@ -73,6 +73,7 @@ li .list a {
     display: block;
     font-size: 0.9375em;
     color: #012169;
+    text-decoration: none;
 }
 .dropmain {
     height: 38px;
@@ -94,3 +95,30 @@ ul .list li:hover a {
 }
 
 .after {margin-top: 20px;}
+
+.resultHead {
+  color: #fff;
+  background-color: #00a3e4;
+  width: fit-content;
+  border-radius: 0px 0px 10px 0px;
+  padding: 0.5em 2em;
+  font-size: 1.25rem;
+  text-align: center;
+  margin-block-end: 0;
+
+}
+
+.resultInput {
+  color: #012169;
+  background-color: #ffffff;
+  padding-left: 0;
+  font-size: 1.25rem;
+  text-align: center;
+  margin-block-end: 0;
+}
+.totals{
+  margin-bottom: 0.6em;
+}
+.list{
+
+}
