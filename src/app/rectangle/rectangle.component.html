@@ -38,7 +38,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="input-group-sizing-default">Height(ft)</span>
         </div>
-        <input type="text" class="form-control" id="height" [(ngModel)]="height" (input)="checkInputs()">
+        <input type="text" class="form-control" id="height" (keydown.enter)="calculate(); showResults = true; getLengthInPixels(); getWidthInPixels();" [(ngModel)]="height" (input)="checkInputs()">
       </div>
     </div>
     <div class="row mb-3">
@@ -47,8 +47,8 @@
           (click)="calculate(); showResults = true; getLengthInPixels(); getWidthInPixels()">Submit</button>
       </div>
       <div class="col-4">
-        <button *ngIf="showNextButton" type="button" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Next</button>
-        <button *ngIf="showResultButton" type="button" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Finish!</button>
+        <button *ngIf="lastRoom == false" type="button" class="btn btn-primary" (click)="nextButtonClicked.emit();" >Next</button>
+        <button *ngIf="lastRoom == true" type="button" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Finish!</button>
       </div>
     </div>
     <div class="row">
@@ -88,6 +88,7 @@
     </div>
   </div>
 <div>
+
  <!-- <div class="container model">
     <div class="cube">
       <div class="front xface"></div>

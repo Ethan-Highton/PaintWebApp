@@ -15,7 +15,7 @@
         <ul class="dropdown">
             <li (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)" class="dropmain">
                 <a class="droptitle" id="menuElem">rooms </a>
-                <img border="0"  src="/assets/images/chevron.png" class="chevron">
+                <img border="0"  src="/assets/Images/chevron.png" class="chevron">
                     <ul class="list" [class.visible]="isDropdownVisible" style="display: none;" [style.display]="isDropdownVisible ? 'block' : 'none'" >
                         <li *ngFor="let number of numbersArray" [value]="number"> <a (click)="setNumberOfRooms(number)">{{ number }}</a></li>
                     </ul>
@@ -33,7 +33,23 @@
     </div>
   </div>
   <div class="container" *ngIf="numberOfRooms && numberOfRooms > 0 && currentRoomIndex < numberOfRooms">
-    <app-rectangle [showNextButton]="true" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)"></app-rectangle>
+    <div class="row">
+      <div class="col">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#" role="tab" id="rectangleTab" (click)="showComponent='rectangle'">Rectangular</a>
+      <!--  <app-rectangle [showNextButton]="true" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)"></app-rectangle> -->
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#" role="tab" id="otherTab" (click)="showComponent='other'">Other</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-content">
+      <app-rectangle *ngIf="showComponent==='rectangle'" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)" [lastRoom]="lastRoom"></app-rectangle>
+      <app-other *ngIf="showComponent==='other'" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)" [lastRoom]="lastRoom"></app-other>
+    </div>
   </div>
   <div *ngIf="currentRoomIndex === numberOfRooms " class="results container">
     <div class="row justify-content-start totals">
@@ -69,13 +85,13 @@
               <th scope="col" class="text-center">Height</th>
               <th scope="col" class="text-center">Width</th>
               <th scope="col" class="text-center">Length</th>
-              <th scope="col" class="text-center">area</th>
+              <th scope="col" class="text-center">Area</th>
               <th scope="col" class="text-center">gals/coat</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let number of roomsArray; let i = index">
-              <th scope="row" >{{number}}</th>
+            <tr *ngFor="let number of rectRoomsArray; let i = index">
+              <th scope="row" >{{number + 1}}</th>
               <td class="text-center">{{heightArray[i]}}</td>
               <td class="text-center">{{widthArray[i]}}</td>
               <td class="text-center">{{lengthArray[i]}}</td>
@@ -85,16 +101,47 @@
           </tbody>
         </table>
       </div>
+      <ul class="nav nav-pills" role="tablist">
+        <li class="nav-item" *ngFor="let room of otherRoomsArray; let i = index">
+          <a class="nav-link" [class.active]="i === numberOfOtherRooms" id="tab-{{i}}" data-toggle="pill" href="#room-{{i}}" role="tab" [attr.aria-controls]="'room-' + i" [attr.aria-selected]="true">Room {{i+1}}</a>
+        </li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane fade show" [class.active]="i === 0" id="room-{{i}}" role="tabpanel" [attr.aria-labelledby]="'tab-' + i" *ngFor="let room of otherRoomsArray; let i = index">
+          <!-- Your table content here -->
+          <table class="table">
+            <thead class="thead bg-primary">
+            <tr>
+              <th scope="col" class="">Wall</th>
+              <th scope="col" class="text-center">Height</th>
+              <th scope="col" class="text-center">Width</th>
+              <th scope="col" class="text-center">Area</th>
+              <th scope="col" class="text-center">Gals</th>
+              <th scope="col" class="text-center">Quarts</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let number of wallsArray; let i = index">
+              <th scope="row" >{{number}}</th>
+              <td class="text-center">{{otherHeightArray[i]}}</td>
+              <td class="text-center">{{otherWidthArray[i]}}</td>
+              <td class="text-center">{{otherAreaArray[i]}}</td>
+              <td class="text-center">{{otherAreaArray[i] / 400}}</td>
+              <td class="text-center">{{(otherAreaArray[i] / 100)}}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-  </div>
 
-</div>
 
-<!--<div class="debug">
-  <p>area: {{ area }}</p>
-  <p>currentRoomIndex: {{ currentRoomIndex }}</p>
-  <p>numberOfRooms: {{numberOfRooms}}</p>
-</div>-->
+      </div>
+    </div>
+
+
+
+<h1>{{numberOfRectRooms}}</h1>
 
 
 

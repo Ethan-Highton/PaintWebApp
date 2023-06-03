@@ -14,7 +14,7 @@
             <ul class="dropdown">
                 <li (mouseenter)="showDropdown($event)" (mouseleave)="hideDropdown($event)" class="dropmain">
                     <a class="droptitle" id="menuElem">Walls </a>
-                    <img border="0"  src="/assets/images/chevron.png" class="chevron">
+                    <img border="0"  src="/assets/Images/chevron.png" class="chevron">
                     <ul class="list" [class.visible]="isDropdownVisible" style="display: none;" [style.display]="isDropdownVisible ? 'block' : 'none'">
                         <li *ngFor="let number of numbersArray" [value]="number"> <a (click)="setNumberOfWalls(number)">{{ number }}</a></li>
                     </ul>
@@ -53,15 +53,55 @@
 </div>
 <div class="container" *ngIf="currentWallIndex > numberOfWalls">
   <div class="row justify-content-start">
-    <div class="row">
+    <div class="row resultBase">
       <div class="col-lg-auto p-0" style="background-color: #ffffff" >
         <h2 class="resultHead">Total Area</h2>
       </div>
         <div class="col-lg-2 mb-0 resultInput d-flex align-items-center text-center justify-content-center pl-0">
           <div class="input-group-append input-group">
-          <h2 class="mb-0 resultInput">{{totalArea}} Sqft</h2>
+          <h2 class="mb-0 resultInput">{{area}} Sqft</h2>
           </div>
       </div>
     </div>
   </div>
+  <div class="row justify-content-start">
+    <div class="row resultBase">
+      <div class="col-lg-auto p-0" style="background-color: #ffffff" >
+        <h2 class="resultHead">Gals</h2>
+      </div>
+      <div class="col-lg-2 mb-0 resultInput d-flex align-items-center text-center justify-content-center pl-0">
+        <div class="input-group-append input-group">
+          <h2 class="mb-0 resultInput">{{gals}}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead class="thead bg-primary">
+        <tr>
+          <th scope="col" class="">Wall</th>
+          <th scope="col" class="text-center">Height</th>
+          <th scope="col" class="text-center">Width</th>
+          <th scope="col" class="text-center">Area</th>
+          <th scope="col" class="text-center">Gals</th>
+          <th scope="col" class="text-center">Quarts</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let number of wallsArray; let i = index">
+          <th scope="row" >{{number}}</th>
+          <td class="text-center">{{heightArray[i]}}</td>
+          <td class="text-center">{{widthArray[i]}}</td>
+          <td class="text-center">{{areaArray[i]}}</td>
+          <td class="text-center">{{areaArray[i] / 400}}</td>
+          <td class="text-center">{{(areaArray[i] / 400) * 4}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <button *ngIf="lastRoom == false" type="submit" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Next</button>
+  <button *ngIf="lastRoom == true" type="submit" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Finish!</button>
 </div>

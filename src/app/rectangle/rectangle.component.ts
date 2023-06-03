@@ -24,9 +24,9 @@ export class RectangleComponent {
   nativeElementRef!: HTMLElement;
   @Input() isVisible: boolean = false;
   @Output() nextButtonClicked = new EventEmitter<number>();
-  @Input() showNextButton: boolean = false;
+  @Input() lastRoom!: boolean;
   @Output() areaCalculated = new EventEmitter<number>();
-  @Input() showResultButton: boolean = false;
+
 
 reset(){
   this.width = null;
@@ -57,11 +57,10 @@ reset(){
     this.area = 2 * (this.width! * this.height!) + 2 * (this.length! * this.height!);
     this.showResults = true;
     this.gals = this.area / 400;
-    console.log(this.area)
     this.areaCalculated.emit(this.area);
   }
 
 
-
+  protected readonly console = console;
 }
 

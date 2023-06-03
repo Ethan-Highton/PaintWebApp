@@ -1,5 +1,5 @@
-import {Component, ElementRef, Input, ViewChild} from '@angular/core';
-
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {MultiroomComponent} from '../multiroom/multiroom.component';
 @Component({
   selector: 'app-other',
   templateUrl: './other.component.html',
@@ -12,15 +12,23 @@ export class OtherComponent {
   currentWallIndex: number = 0;
   width!: number | null;
   height!: number | null;
-  area!: number;
+  wallArea!: number;
   gals!: number;
-  totalArea: number = 0;
+  area: number = 0;
   showResults = false;
   allInputsFilled = false;
   nativeElement: any;
+  widthArray!: number[];
+  heightArray!: number[];
+  areaArray!: number[];
+  wallsArray!: number[];
   @ViewChild('rectangle') rectangleElementRef!: ElementRef;
   nativeElementRef!: HTMLElement;
   @Input() isVisible: boolean = false;
+  @Output() nextButtonClicked = new EventEmitter<number>();
+  @Input() lastRoom!: boolean;
+  @Output() areaCalculated = new EventEmitter<number>();
+  @ViewChild(MultiroomComponent) multiroomComponent!: MultiroomComponent;
 
   showDropdown(event: MouseEvent) {
     this.isDropdownVisible = true;
@@ -32,8 +40,10 @@ export class OtherComponent {
   setNumberOfWalls(value: number) {
     this.numberOfWalls = value;
     this.currentWallIndex = 1;
-    //this.activeRoomIndex = 0;
-    //this.createRooms();
+    this.wallsArray =Array.from({length:value}, (_, i) => i + 1) ;
+    this.heightArray = new Array(value).fill(null);
+    this.widthArray = new Array(value).fill(null);
+    this.areaArray = new Array(value).fill(null);
   }
 
 
@@ -46,20 +56,34 @@ export class OtherComponent {
     }
   }
   nextWall(){
-    this.area = this.width! * this.height!;
-    this.totalArea += this.area ;
-    if (this.area){
+    this.wallArea = this.width! * this.height!;
+    this.area += this.wallArea ;
+    if (this.wallArea){
+      if (this.height != null && this.width != null ) {
+        this.heightArray[this.currentWallIndex - 1] = this.height;
+        this.widthArray[this.currentWallIndex - 1] = this.width;
+        this.areaArray[this.currentWallIndex - 1] = this.wallArea;
+      }
       this.currentWallIndex++;
-      console.log(this.totalArea)
-      this.width = null;
+      this.width = null; //problem is here
       this.height = null;
+      if (this.currentWallIndex > this.numberOfWalls){
+        this.areaCalculated.emit(this.area);
+        this.gals = this.area / 400;
+      }
     }
     else {
       alert("Please enter all dimensions.")
     }
+
   }
 
-
+  reset(){
+    this.width = null;
+    this.gals = 0;
+    this.height = null;
+    this.area = 0;
+  }
 
 
 }

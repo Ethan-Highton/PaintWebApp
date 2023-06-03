@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import { RectangleComponent } from '../rectangle/rectangle.component';
+import { OtherComponent } from '../other/other.component';
 
 @Component({
   selector: 'app-multiroom',
@@ -14,19 +15,31 @@ export class MultiroomComponent implements AfterViewInit {
   activeRoomIndex: number = 0;
   area!: number;
   totalArea: number = 0;
-  roomsArray!: number[];
+  rectRoomsArray!: number[];
+  otherRoomsArray!: number[];
   widthArray!: number[];
   heightArray!: number[];
   lengthArray!: number[];
   areaArray!: number[];
   galArray!:number[];
-
+  otherWidthArray!: number[];
+  otherHeightArray!: number[];
+  otherAreaArray!: number[];
+  otherGalArray!: number[];
+  otherQuartArray!: number[];
+  numberOfOtherRooms: number = 0;
+  numberOfRectRooms: number = 0;
+  showComponent = '';
+  lastRoom: boolean = false;
+  wallsArray!: number[];
   @ViewChild('roomsContainer') roomsContainer!: ElementRef;
   @ViewChild(RectangleComponent) rectangleComponent!: RectangleComponent;
+  @ViewChild(OtherComponent) otherComponent!: OtherComponent;
 
   ngAfterViewInit() {
     const menuLi = document.querySelector("#menuElem > li:nth-child(1)");
     // Perform any modifications to the menuLi element here
+
   }
 
   showDropdown(event: MouseEvent) {
@@ -41,12 +54,16 @@ export class MultiroomComponent implements AfterViewInit {
     this.numberOfRooms = value;
     this.currentRoomIndex = 0;
     this.activeRoomIndex = 0;
-    this.roomsArray =Array.from({length:value}, (_, i) => i + 1) ;
     this.heightArray = new Array(value).fill(null);
     this.widthArray = new Array(value).fill(null);
     this.lengthArray = new Array(value).fill(null);
     this.areaArray = new Array(value).fill(null);
     this.galArray = new Array(value).fill(null);
+    this.otherHeightArray = new Array(value).fill(null);
+    this.otherWidthArray = new Array(value).fill(null);
+    this.otherAreaArray = new Array(value).fill(null);
+    this.otherGalArray = new Array(value).fill(null);
+    this.otherQuartArray = new Array(value).fill(null);
   }
 
 handleArea(value: number){
@@ -56,24 +73,49 @@ handleArea(value: number){
 nextRoom() {
   if (this.currentRoomIndex < this.numberOfRooms) {
     if (this.area){
-      if (this.rectangleComponent.height != null && this.rectangleComponent.width != null && this.rectangleComponent.length != null && this.rectangleComponent.area != null && this.rectangleComponent.gals !=null) {
-        this.heightArray[this.currentRoomIndex] = this.rectangleComponent.height;
-        this.widthArray[this.currentRoomIndex] = this.rectangleComponent.width;
-        this.lengthArray[this.currentRoomIndex] = this.rectangleComponent.length;
-        this.areaArray[this.currentRoomIndex] = this.rectangleComponent.area;
-        this.galArray[this.currentRoomIndex] = this.rectangleComponent.gals;
+      if (this.showComponent == 'rectangle' && this.rectangleComponent.height != null && this.rectangleComponent.width != null && this.rectangleComponent.length != null && this.rectangleComponent.area != null && this.rectangleComponent.gals !=null) {
+        this.heightArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.height;
+        this.widthArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.width;
+        this.lengthArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.length;
+        this.areaArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.area;
+        this.galArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.gals;
       }
-      this.totalArea += this.area;
-      this.rectangleComponent.reset()
-      this.area = this.rectangleComponent.area!
-      this.currentRoomIndex++
-      if (this.currentRoomIndex == this.numberOfRooms - 1) {
-        this.rectangleComponent.showNextButton = false;
-        this.rectangleComponent.showResultButton = true;
+      else  if (this.showComponent == 'other'){
+        this.wallsArray = this.otherComponent.wallsArray;
+        this.otherHeightArray = this.otherComponent.heightArray;
+        this.otherWidthArray = this.otherComponent.widthArray;
+        this.otherAreaArray = this.otherComponent.areaArray;
       }
-    }
-    else {
+      if (this.showComponent == 'rectangle'){
+        this.totalArea += this.area;
+        this.rectangleComponent.reset();
+        this.area = this.rectangleComponent.area!;
+        this.currentRoomIndex++;
+        this.numberOfRectRooms++;
+        this.showComponent = '';
+      }
+     else if (this.showComponent == 'other'){
+       this.totalArea += this.area;
+       this.otherComponent.reset();
+       this.area = this.otherComponent.area!;
+       this.currentRoomIndex++;
+        this.numberOfOtherRooms++;
+       this.otherComponent.currentWallIndex = 0;
+       this.otherComponent.numberOfWalls = 0;
+       this.showComponent = '';
+
+      }
+    }else {
       alert('Please enter the area for the current room.');
+    }
+
+    if (this.currentRoomIndex == this.numberOfRooms -1) {
+      this.lastRoom = true;
+
+    }
+    if (this.lastRoom){
+      this.rectRoomsArray = Array.from({length: this.numberOfRectRooms}, (_, i) => i) ;
+      this.otherRoomsArray = Array.from({length: this.numberOfOtherRooms}, (_, i) => i) ;
     }
   }
 }
