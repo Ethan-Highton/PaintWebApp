@@ -22,6 +22,7 @@ export class OtherComponent {
   heightArray!: number[];
   areaArray!: number[];
   wallsArray!: number[];
+  walls: {height: number, width: number, area: number}[] = [];
   @ViewChild('rectangle') rectangleElementRef!: ElementRef;
   nativeElementRef!: HTMLElement;
   @Input() isVisible: boolean = false;
@@ -29,7 +30,7 @@ export class OtherComponent {
   @Input() lastRoom!: boolean;
   @Output() areaCalculated = new EventEmitter<number>();
   @ViewChild(MultiroomComponent) multiroomComponent!: MultiroomComponent;
-
+  @Output() roomDetails: EventEmitter<any> = new EventEmitter();
   showDropdown(event: MouseEvent) {
     this.isDropdownVisible = true;
   }
@@ -55,6 +56,7 @@ export class OtherComponent {
       this.allInputsFilled = false;
     }
   }
+
   nextWall(){
     this.wallArea = this.width! * this.height!;
     this.area += this.wallArea ;
@@ -63,13 +65,17 @@ export class OtherComponent {
         this.heightArray[this.currentWallIndex - 1] = this.height;
         this.widthArray[this.currentWallIndex - 1] = this.width;
         this.areaArray[this.currentWallIndex - 1] = this.wallArea;
+        let wall = {height: this.height, width: this.width, area: this.wallArea};
+        this.walls.push(wall);
       }
+
       this.currentWallIndex++;
       this.width = null; //problem is here
       this.height = null;
       if (this.currentWallIndex > this.numberOfWalls){
         this.areaCalculated.emit(this.area);
         this.gals = this.area / 400;
+        this.roomDetails.emit(this.walls);
       }
     }
     else {
@@ -83,6 +89,7 @@ export class OtherComponent {
     this.gals = 0;
     this.height = null;
     this.area = 0;
+    this.walls = [];
   }
 
 

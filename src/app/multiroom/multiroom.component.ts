@@ -37,6 +37,7 @@ export class MultiroomComponent implements AfterViewInit {
   showComponent = '';
   lastRoom: boolean = false;
   wallsArray!: number[];
+  roomsDetails: {height: number, width: number, area: number}[][] = [];
   private _rooms = new BehaviorSubject<any[]>([]);
   @ViewChild('roomsContainer') roomsContainer!: ElementRef;
   @ViewChild(RectangleComponent) rectangleComponent!: RectangleComponent;
@@ -77,7 +78,9 @@ export class MultiroomComponent implements AfterViewInit {
 handleArea(value: number){
   this.area = value;
  }
-
+  handleRoomDetails(walls: {height: number, width: number, area: number}[]) {
+    this.roomsDetails.push(walls);
+  }
 nextRoom() {
   if (this.currentRoomIndex < this.numberOfRooms) {
     if (this.area){
