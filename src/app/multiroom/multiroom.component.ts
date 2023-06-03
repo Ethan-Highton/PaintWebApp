@@ -38,13 +38,20 @@ export class MultiroomComponent implements AfterViewInit {
   lastRoom: boolean = false;
   wallsArray!: number[];
   activeTab: number = 0;
+  showInput=false;
+  roomName: string | number = '';
+  isRoomNameEdited: boolean = false;
   roomsDetails: {height: number, width: number, area: number}[][] = [];
+  roomNames: (string | number)[] = [];
   private _rooms = new BehaviorSubject<any[]>([]);
   @ViewChild('roomsContainer') roomsContainer!: ElementRef;
   @ViewChild(RectangleComponent) rectangleComponent!: RectangleComponent;
   @ViewChild(OtherComponent) otherComponent!: OtherComponent;
 
-
+  changeRoomName(value: string | number) {
+    this.roomName = value;
+    this.isRoomNameEdited = true;
+  }
 
   ngAfterViewInit() {
     const menuLi = document.querySelector("#menuElem > li:nth-child(1)");
@@ -78,6 +85,7 @@ export class MultiroomComponent implements AfterViewInit {
 
 handleArea(value: number){
   this.area = value;
+  this.showInput = true
  }
 
   handleRoomDetails(walls: {height: number, width: number, area: number}[]) {
@@ -86,6 +94,7 @@ handleArea(value: number){
 nextRoom() {
   if (this.currentRoomIndex < this.numberOfRooms) {
     if (this.area){
+      this.showInput = false;
       if (this.showComponent == 'rectangle' && this.rectangleComponent.height != null && this.rectangleComponent.width != null && this.rectangleComponent.length != null && this.rectangleComponent.area != null && this.rectangleComponent.gals !=null) {
         this.heightArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.height;
         this.widthArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.width;
@@ -108,15 +117,23 @@ nextRoom() {
         this.showComponent = '';
       }
      else if (this.showComponent == 'other'){
+       if(!this.isRoomNameEdited){
+         this.roomName = 'Room ' + (this.currentRoomIndex + 1);
+       }
+       this.roomNames[this.currentRoomIndex] = this.roomName;
        this.totalArea += this.area;
        this.otherComponent.reset();
        this.area = this.otherComponent.area!;
+       console.log('Init index' + this.currentRoomIndex)
        this.currentRoomIndex++;
         this.numberOfOtherRooms++;
        this.otherComponent.currentWallIndex = 0;
        this.otherComponent.numberOfWalls = 0;
        this.showComponent = '';
-
+       console.log(this.roomName);
+       console.log(this.roomNames);
+       this.roomName = '';
+       this.isRoomNameEdited = false;
       }
     }else {
       alert('Please enter the area for the current room.');

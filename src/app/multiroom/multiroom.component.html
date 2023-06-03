@@ -46,6 +46,19 @@
         </ul>
       </div>
     </div>
+    <div class="row roomName mb-3 " *ngIf="showInput" >
+      <div class="row">
+      <div class="col-lg-auto p-0" style="background-color: #ffffff" >
+        <h2 class="resultHead">Room Name</h2>
+        </div>
+      <div class="col-lg-2 mb-0 resultInput d-flex align-items-center text-center justify-content-center pl-0">
+        <div class="input-group-append input-group">
+          <input class="form-control resultInput mb-0" type="text" id="roomName" placeholder="Optional" [(ngModel)]="roomName" (ngModelChange)="changeRoomName($event)" style="border-color: transparent; background-color: transparent" >
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
     <div class="tab-content">
       <app-rectangle *ngIf="showComponent==='rectangle'" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)" [lastRoom]="lastRoom"></app-rectangle>
       <app-other *ngIf="showComponent==='other'"  (roomDetails)="handleRoomDetails($event)" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)" [lastRoom]="lastRoom"></app-other>
@@ -57,11 +70,7 @@
         <div class="col-lg-auto p-0" style="background-color: #ffffff" >
           <h2 class="resultHead">Total Area</h2>
         </div>
-        <div class="col-lg-2 mb-0 resultInput d-flex align-items-center text-center justify-content-center pl-0">
-          <div class="input-group-append input-group">
-            <h2 class="mb-0 resultInput">{{totalArea}} Sqft</h2>
-          </div>
-        </div>
+
       </div>
     </div>
     <div class="row justify-content-start totals">
@@ -117,7 +126,7 @@
         <div class="col">
           <ul class="nav nav-tabs">
             <li class="nav-item" *ngFor="let room of roomsDetails; let i = index">
-              <a class="nav-link" [class.active]="activeTab === i" (click)="activeTab = i">Room {{ i + 1 }}</a>
+              <a class="nav-link" [class.active]="activeTab === i" (click)="activeTab = i">{{this.roomNames[i]}}</a>
             </li>
           </ul>
         </div>
@@ -156,7 +165,7 @@
       </div>
     </div>
   </div>
-</div>
+
 
 
 
