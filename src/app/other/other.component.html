@@ -104,6 +104,11 @@
   </div>
   <div class="row">
     <div class="col">
+    <!--  <input *ngIf="lastRoom !== undefined" type="text" class="form-control" placeholder="Enter room name" [(ngModel)]="roomName" />-->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
       <button *ngIf="lastRoom == false" type="submit" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Next</button>
       <button *ngIf="lastRoom == true" type="submit" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Finish!</button>
     </div>

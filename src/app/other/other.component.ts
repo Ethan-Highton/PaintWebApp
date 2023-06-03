@@ -31,6 +31,8 @@ export class OtherComponent {
   @Output() areaCalculated = new EventEmitter<number>();
   @ViewChild(MultiroomComponent) multiroomComponent!: MultiroomComponent;
   @Output() roomDetails: EventEmitter<any> = new EventEmitter();
+  @Output() roomNameEntered = new EventEmitter<string>();
+
   showDropdown(event: MouseEvent) {
     this.isDropdownVisible = true;
   }
