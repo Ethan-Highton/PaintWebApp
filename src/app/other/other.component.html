@@ -102,6 +102,11 @@
       </table>
     </div>
   </div>
-  <button *ngIf="lastRoom == false" type="submit" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Next</button>
-  <button *ngIf="lastRoom == true" type="submit" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Finish!</button>
+  <div class="row">
+    <div class="col">
+      <button *ngIf="lastRoom == false" type="submit" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Next</button>
+      <button *ngIf="lastRoom == true" type="submit" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Finish!</button>
+    </div>
+  </div>
+
 </div>
