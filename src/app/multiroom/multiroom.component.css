@@ -122,3 +122,11 @@ ul .list li:hover a {
 .list{
 
 }
+
+.shape-nav {
+  margin-bottom: 0.6em;
+}
+
+.nav-link {
+  color: #00a3e4;
+}

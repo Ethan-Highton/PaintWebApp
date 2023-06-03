@@ -27,13 +27,13 @@
     <div *ngIf="currentRoomIndex < numberOfRooms">
       <div class="row justify-content-between">
         <div class="col">
-          <h1>Room {{ currentRoomIndex + 1 }} out of {{numberOfRooms}}</h1>
+          <h2>Room {{ currentRoomIndex + 1 }} out of {{numberOfRooms}}</h2>
         </div>
       </div>
     </div>
   </div>
-  <div class="container" *ngIf="numberOfRooms && numberOfRooms > 0 && currentRoomIndex < numberOfRooms">
-    <div class="row">
+  <div class="" *ngIf="numberOfRooms && numberOfRooms > 0 && currentRoomIndex < numberOfRooms">
+    <div class="row shape-nav">
       <div class="col">
         <ul class="nav nav-tabs">
           <li class="nav-item">
@@ -51,7 +51,7 @@
       <app-other *ngIf="showComponent==='other'" (nextButtonClicked)="nextRoom()" (areaCalculated)="handleArea($event)" [lastRoom]="lastRoom"></app-other>
     </div>
   </div>
-  <div *ngIf="currentRoomIndex === numberOfRooms " class="results container">
+  <div *ngIf="currentRoomIndex === numberOfRooms " class="results">
     <div class="row justify-content-start totals">
       <div class="row">
         <div class="col-lg-auto p-0" style="background-color: #ffffff" >
@@ -78,6 +78,11 @@
     </div>
     <div class="row">
       <div class="col">
+        <h2>Rectangular rooms:</h2>
+      </div>
+    </div>
+    <div class="row" *ngIf="numberOfRectRooms">
+      <div class="col">
         <table class="table">
           <thead class="thead bg-primary">
             <tr>
@@ -101,47 +106,40 @@
           </tbody>
         </table>
       </div>
-      <ul class="nav nav-pills" role="tablist">
-        <li class="nav-item" *ngFor="let room of otherRoomsArray; let i = index">
-          <a class="nav-link" [class.active]="i === numberOfOtherRooms" id="tab-{{i}}" data-toggle="pill" href="#room-{{i}}" role="tab" [attr.aria-controls]="'room-' + i" [attr.aria-selected]="true">Room {{i+1}}</a>
-        </li>
-      </ul>
-      <div class="tab-content">
-        <div class="tab-pane fade show" [class.active]="i === 0" id="room-{{i}}" role="tabpanel" [attr.aria-labelledby]="'tab-' + i" *ngFor="let room of otherRoomsArray; let i = index">
-          <!-- Your table content here -->
-          <table class="table">
-            <thead class="thead bg-primary">
-            <tr>
-              <th scope="col" class="">Wall</th>
-              <th scope="col" class="text-center">Height</th>
-              <th scope="col" class="text-center">Width</th>
-              <th scope="col" class="text-center">Area</th>
-              <th scope="col" class="text-center">Gals</th>
-              <th scope="col" class="text-center">Quarts</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let number of wallsArray; let i = index">
-              <th scope="row" >{{number}}</th>
-              <td class="text-center">{{otherHeightArray[i]}}</td>
-              <td class="text-center">{{otherWidthArray[i]}}</td>
-              <td class="text-center">{{otherAreaArray[i]}}</td>
-              <td class="text-center">{{otherAreaArray[i] / 400}}</td>
-              <td class="text-center">{{(otherAreaArray[i] / 100)}}</td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
+  </div>
+</div>
+   <!-- <div class="row">
+      <div class="col">
+
+            <table class="table" *ngFor="let number of otherRoomsArray">
+              <thead class="thead bg-primary">
+              <tr>
+                <th scope="col" class="">Wall</th>
+                <th scope="col" class="text-center">Height</th>
+                <th scope="col" class="text-center">Width</th>
+                <th scope="col" class="text-center">Area</th>
+                <th scope="col" class="text-center">Gals</th>
+                <th scope="col" class="text-center">Quarts</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let number of wallsArray; let i = index">
+                <th scope="row" >{{number}}</th>
+                <td class="text-center">{{otherHeightArray[i]}}</td>
+                <td class="text-center">{{otherWidthArray[i]}}</td>
+                <td class="text-center">{{otherAreaArray[i]}}</td>
+                <td class="text-center">{{otherAreaArray[i] / 400}}</td>
+                <td class="text-center">{{(otherAreaArray[i] / 100)}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>-->
 
 
-      </div>
-    </div>
 
 
-
-<h1>{{numberOfRectRooms}}</h1>
 
 
 

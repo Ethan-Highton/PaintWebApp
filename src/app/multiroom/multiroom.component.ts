@@ -1,7 +1,12 @@
 import { AfterViewInit, Component, ComponentFactoryResolver, ViewContainerRef, ViewChild, ElementRef} from '@angular/core';
 import { RectangleComponent } from '../rectangle/rectangle.component';
 import { OtherComponent } from '../other/other.component';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
+@Injectable({
+  providedIn: 'root'
+})
 @Component({
   selector: 'app-multiroom',
   templateUrl: './multiroom.component.html',
@@ -32,9 +37,12 @@ export class MultiroomComponent implements AfterViewInit {
   showComponent = '';
   lastRoom: boolean = false;
   wallsArray!: number[];
+  private _rooms = new BehaviorSubject<any[]>([]);
   @ViewChild('roomsContainer') roomsContainer!: ElementRef;
   @ViewChild(RectangleComponent) rectangleComponent!: RectangleComponent;
   @ViewChild(OtherComponent) otherComponent!: OtherComponent;
+
+
 
   ngAfterViewInit() {
     const menuLi = document.querySelector("#menuElem > li:nth-child(1)");
