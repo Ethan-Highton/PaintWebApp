@@ -36,6 +36,8 @@ reset(){
   this.length = null;
   this.height = null;
   this.area = null;
+  this.ceilingGals = null;
+  this.ceilingArea = null;
 }
   getWidthInPixels() {
     this.genWidth = this.width! * this.scale;

@@ -27,6 +27,8 @@ export class MultiroomComponent implements AfterViewInit {
   lengthArray!: number[];
   areaArray!: number[];
   galArray!:number[];
+  ceilingGalArray!:number[];
+  ceilingAreaArray!:number[];
   otherWidthArray!: number[];
   otherHeightArray!: number[];
   otherAreaArray!: number[];
@@ -76,6 +78,8 @@ export class MultiroomComponent implements AfterViewInit {
     this.lengthArray = new Array(value).fill(null);
     this.areaArray = new Array(value).fill(null);
     this.galArray = new Array(value).fill(null);
+    this.ceilingAreaArray = new Array(value).fill(null)
+    this.ceilingGalArray = new Array(value).fill(null)
     this.otherHeightArray = new Array(value).fill(null);
     this.otherWidthArray = new Array(value).fill(null);
     this.otherAreaArray = new Array(value).fill(null);
@@ -95,12 +99,14 @@ nextRoom() {
   if (this.currentRoomIndex < this.numberOfRooms) {
     if (this.area){
       this.showInput = false;
-      if (this.showComponent == 'rectangle' && this.rectangleComponent.height != null && this.rectangleComponent.width != null && this.rectangleComponent.length != null && this.rectangleComponent.area != null && this.rectangleComponent.gals !=null) {
+      if (this.showComponent == 'rectangle' && this.rectangleComponent.height != null && this.rectangleComponent.width != null && this.rectangleComponent.length != null && this.rectangleComponent.area != null && this.rectangleComponent.gals !=null && this.rectangleComponent.ceilingArea !=null && this.rectangleComponent.ceilingGals !=null) {
         this.heightArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.height;
         this.widthArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.width;
         this.lengthArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.length;
         this.areaArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.area;
         this.galArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.gals;
+        this.ceilingGalArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.ceilingGals;
+        this.ceilingAreaArray[this.currentRoomIndex - this.numberOfOtherRooms] = this.rectangleComponent.ceilingArea;
       }
       else  if (this.showComponent == 'other'){
         this.wallsArray = this.otherComponent.wallsArray;
