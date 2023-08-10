@@ -11,6 +11,8 @@ export class RectangleComponent {
   height: number | null = null;
   area: number | null = null;
   gals: number | null = null;
+  ceilingArea: number | null = null;
+  ceilingGals: number | null = null;
   showResults = false;
   allInputsFilled = false;
   scale: number = 15; //
@@ -57,6 +59,8 @@ reset(){
     this.area = 2 * (this.width! * this.height!) + 2 * (this.length! * this.height!);
     this.showResults = true;
     this.gals = this.area / 400;
+    this.ceilingArea = this.width! * this.length!;
+    this.ceilingGals = this.ceilingArea! / 400;
     this.areaCalculated.emit(this.area);
   }
 

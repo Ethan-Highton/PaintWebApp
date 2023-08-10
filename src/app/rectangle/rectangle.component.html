@@ -60,6 +60,9 @@
       <div class="row p-0">
         <div class="col p-0">
           <div class="row">
+            <h3>Wall Space:</h3>
+          </div>
+          <div class="row">
             <div class="input-group mb-3 col-3" id="area">
               <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
                 [value]="area" readonly>
@@ -81,26 +84,71 @@
             </div>
           </div>
         </div>
-        <div class="col d-flex justify-content-center align-items-center">
+          <div class="col p-0">
+            <div class="row">
+              <div class="col">
+                <h3>Ceiling Area:</h3>
+              </div>
+            </div>
+            <div class="row">
+              <div class="row">
+                <div class="input-group mb-3 col-3">
+                  <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
+                         [value]="ceilingArea" readonly>
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="input-group-sizing-default">Sqft</span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <p class="col" style="margin-bottom: 1em">Per coat you will need:</p>
+              </div>
+              <div class="row">
+                <div class="input-group mb-3 col-3">
+                  <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
+                         [value]="ceilingGals" readonly>
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="input-group-sizing-default">Gallon(s)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<div class="col d-flex justify-content-center align-items-center">
           <div class="rectangle" [style.width.px]="genWidth" [style.height.px]="genLength"></div>
         </div>
+      </div>--><!--
+      <div class="row p-0">
+        <div class="col">
+          <h3>Ceiling Area:</h3>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="input-group mb-3 col-3">
+          <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
+                 [value]="ceilingArea" readonly>
+          <div class="input-group-append">
+            <span class="input-group-text" id="input-group-sizing-default">Sqft</span>
+          </div>
+        </div>
+        <div class="row">
+          <p class="col" style="margin-bottom: 1em">Per coat you will need:</p>
+        </div>
+        <div class="row">
+          <div class="input-group mb-3 col-3">
+            <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
+                   [value]="ceilingGals" readonly>
+            <div class="input-group-append">
+              <span class="input-group-text" id="input-group-sizing-default">Gallon(s)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>-->
   </div>
-<div>
 
- <!-- <div class="container model">
-    <div class="cube">
-      <div class="front xface"></div>
-      <div class="back xface"></div>
-      <div class="left yface"></div>
-      <div class="right yface"></div>
-      <div class="top zface"></div>
-      <div class="bottom zface"></div>
-    </div>
-  </div>
-</div>
-</body>-->
+
 
 
 
