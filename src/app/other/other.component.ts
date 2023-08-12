@@ -15,6 +15,7 @@ export class OtherComponent {
   wallArea!: number;
   gals!: number;
   area: number = 0;
+  ceilingArea: number = 0;
   showResults = false;
   allInputsFilled = false;
   nativeElement: any;
@@ -32,6 +33,7 @@ export class OtherComponent {
   @ViewChild(MultiroomComponent) multiroomComponent!: MultiroomComponent;
   @Output() roomDetails: EventEmitter<any> = new EventEmitter();
   @Output() roomNameEntered = new EventEmitter<string>();
+  roundedGals: any;
 
   showDropdown(event: MouseEvent) {
     this.isDropdownVisible = true;
@@ -75,8 +77,17 @@ export class OtherComponent {
       this.width = null; //problem is here
       this.height = null;
       if (this.currentWallIndex > this.numberOfWalls){
+        if (this.numberOfWalls === 3) {
+          let a = +this.widthArray[0];
+          let b = +this.widthArray[1];
+          let c = +this.widthArray[2];
+          let semi = (a + b + c) / 2;
+          this.ceilingArea = Math.sqrt(semi * (semi - a) * (semi - b) * (semi - c));
+        }
         this.areaCalculated.emit(this.area);
         this.gals = this.area / 400;
+        let galsStep = this.gals;
+        this.roundedGals = parseFloat(this.gals.toFixed(2));
         this.roomDetails.emit(this.walls);
       }
     }
