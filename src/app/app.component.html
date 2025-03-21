@@ -2,15 +2,18 @@
 
 </head>
 <body>
+    <button class="theme-toggle" (click)="toggleDarkMode()">
+        {{ isDarkMode ? '🌞' : '🌙' }}
+    </button>
     <div class="container">
-      <div class="row Navi ">
-        <div class="col">
-          <div class="navtit d-flex">
-            <a href="/" class="navlink">Home</a>
-            <span>&nbsp;{{ pageTitle }}</span>
-          </div>
+        <div class="row Navi ">
+            <div class="col">
+                <div class="navtit d-flex">
+                    <a href="/" class="navlink">Home</a>
+                    <span>&nbsp;{{ pageTitle }}</span>
+                </div>
+            </div>
         </div>
-      </div>
         <router-outlet>
         </router-outlet>
     </div>

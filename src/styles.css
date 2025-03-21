@@ -1,11 +1,33 @@
+:root {
+    --bg-color: #f8f8f8;
+    --text-color: #012169;
+    --primary-color: #00a3e4;
+    --hover-color: #00a3e3;
+    --border-color: #cccccc;
+    --input-bg: #ffffff;
+    --input-text: #000000;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #ffffff;
+    --primary-color: #0077aa;
+    --hover-color: #00a3e3;
+    --border-color: #444444;
+    --input-bg: #2d2d2d;
+    --input-text: #ffffff;
+}
+
 * {
-    font-family:Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    color: #012169;
-    background-color: #f8f8f8;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    transition: all 0.3s ease;
 }
+
 .row {
     width: 100%;
     margin-left: auto;
@@ -13,13 +35,13 @@ body {
     max-width: 60em;
 }
 
-a:hover{
-  color: #00a3e3;
+a:hover {
+    color: var(--hover-color);
 }
 
 h1 {
     font-weight: normal;
-    color: #012169;
+    color: var(--text-color);
     font-size: 2.625em;
     margin-bottom: 0.6em;
     margin-top: 0;
@@ -28,9 +50,9 @@ h1 {
 
 h2 {
     font-weight: normal;
-    color: #012169;
+    color: var(--text-color);
     font-size: 1.5em;
-    font-family: Helvetica,Arial,sans-serif;
+    font-family: Helvetica, Arial, sans-serif;
     margin-bottom: 0.6em;
     margin-top: 0;
     font-weight: normal;
@@ -45,27 +67,28 @@ p {
 }
 
 .btn-primary {
-  background-color: #00a3e4;
-  border-color: #00a3e4;
-  display: block;
-  position: relative;
-  border-radius: 0px 0px 10px 0px;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    display: block;
+    position: relative;
+    border-radius: 0px 0px 10px 0px;
 }
+
 .bg-primary {
-  background-color: #00a3e4;
-  border-color: #00a3e4;
-  color: #ffffff;
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: #ffffff;
 }
 
 .hr {
     margin-bottom: 20px;
-    border-top: solid 1px #cccccc;
+    border-top: solid 1px var(--border-color);
     width: 100%;
 }
 
 .input-group-text {
     color: #fff;
-    background-color: #00a3e4;
+    background-color: var(--primary-color);
     width: 5.5em;
     border-radius: 0px 0px 10px 0px;
 }
@@ -73,6 +96,64 @@ p {
 .input-group-append.shadow {
     border-radius: 0px 0px 10px 0px;
 }
-.input-group{
-  width: auto;
+
+.input-group {
+    width: auto;
+}
+
+.theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    opacity: 0.9;
+}
+
+input, 
+select, 
+textarea {
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border-color: var(--border-color) !important;
+}
+
+input::placeholder {
+    color: var(--input-text) !important;
+    opacity: 0.7;
+}
+
+.form-control,
+.form-control:focus,
+.input-group input,
+.input-group select,
+.input-group textarea {
+    background-color: var(--input-bg) !important;
+    color: var(--input-text) !important;
+    border-color: var(--border-color) !important;
+}
+
+.form-control::placeholder {
+    color: var(--input-text) !important;
+    opacity: 0.6;
+}
+
+/* Override Bootstrap's autocomplete styles */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px var(--input-bg) inset !important;
+    -webkit-text-fill-color: var(--input-text) !important;
 }

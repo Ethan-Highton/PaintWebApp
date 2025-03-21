@@ -9,12 +9,29 @@ import { ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 export class AppComponent {
   title = 'PaintWebApp';
   pageTitle: string | undefined;
+  isDarkMode = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    this.checkDarkMode();
+  }
 
   ngOnInit() {
     this.getPageTitle();
+    this.checkDarkMode(); // Add this line to ensure dark mode is checked on init
   }
+
+  toggleDarkMode(): void {
+    this.isDarkMode = !this.isDarkMode;
+    document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('darkMode', this.isDarkMode.toString());
+  }
+
+  private checkDarkMode(): void {
+    const savedMode = localStorage.getItem('darkMode');
+    this.isDarkMode = savedMode === 'true';
+    document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
+  }
+
   getPageTitle(): void {
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
