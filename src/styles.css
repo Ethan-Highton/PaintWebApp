@@ -157,3 +157,13 @@ input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px var(--input-bg) inset !important;
     -webkit-text-fill-color: var(--input-text) !important;
 }
+
+.navtit {
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+[data-theme="dark"] .navtit,
+[data-theme="dark"] .navlink {
+    color: var(--primary-color) !important;
+}
