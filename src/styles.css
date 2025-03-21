@@ -167,3 +167,101 @@ input:-webkit-autofill:active {
 [data-theme="dark"] .navlink {
     color: var(--primary-color) !important;
 }
+
+[data-theme="dark"] .dropmain,
+[data-theme="dark"] .dropdown {
+    background-color: var(--primary-color) !important;
+    border: none !important;
+    color: white !important;
+    border-radius: 4px !important;
+    transition: all 0.2s ease;
+}
+
+[data-theme="dark"] .droptitle {
+    color: white !important;
+}
+
+[data-theme="dark"] .input-group-prepend .input-group-text,
+[data-theme="dark"] .input-group-append .input-group-text {
+    background-color: var(--primary-color);
+    border: none;
+    color: white;
+}
+
+[data-theme="dark"] .inpug-group-prepend .input-group-text {
+    border: none;
+    background-color: var(--primary-color);
+}
+
+[data-theme="dark"] .input-group .form-control {
+    border: none;
+    border-left: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .form-control {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .list {
+    background-color: var(--primary-color) !important;
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    margin-top: 4px;
+}
+
+[data-theme="dark"] .list a {
+    background-color: var(--primary-color) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    transition: all 0.2s ease;
+    padding: 10px 16px;
+}
+
+[data-theme="dark"] .list li:hover a {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    padding-left: 20px;
+}
+
+[data-theme="dark"] .list li:first-child a {
+    border-top: none !important;
+}
+
+[data-theme="dark"] .list li:last-child a {
+    border-bottom: none !important;
+}
+
+[data-theme="dark"] .resultInput {
+    background-color: var(--input-bg) !important;
+    border: none !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] table {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .table td,
+[data-theme="dark"] .table th {
+    border-color: var(--border-color) !important;
+    color: var(--text-color) !important;
+}
+
+[data-theme="dark"] .resultHead {
+    color: #fff;
+    background-color: var(--primary-color);
+    width: fit-content;
+    border-radius: 0px 0px 10px 0px;
+    padding: 0.5em 2em;
+    font-size: 1.25rem;
+    text-align: center;
+    margin-block-end: 0;
+}
+
+[data-theme="dark"] .col-lg-auto.p-0 {
+    background-color: var(--bg-color) !important;
+}

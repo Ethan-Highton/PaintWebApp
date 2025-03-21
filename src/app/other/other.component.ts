@@ -6,7 +6,7 @@ import {MultiroomComponent} from '../multiroom/multiroom.component';
   styleUrls: ['./other.component.css']
 })
 export class OtherComponent {
-  numbersArray: number[] = Array.from({ length: 4 }, (_, i) => i + 3);
+  numbersArray: number[] = Array.from({ length: 8 }, (_, i) => i + 3); // Changed from 4 to 8 to show 3-10 walls
   isDropdownVisible = false;
   numberOfWalls!: number;
   currentWallIndex: number = 0;
