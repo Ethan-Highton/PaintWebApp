@@ -23,6 +23,7 @@ export class OtherComponent {
   heightArray!: number[];
   areaArray!: number[];
   wallsArray!: number[];
+  coverage: number = 400;
   walls: {height: number, width: number, area: number}[] = [];
   @ViewChild('rectangle') rectangleElementRef!: ElementRef;
   nativeElementRef!: HTMLElement;

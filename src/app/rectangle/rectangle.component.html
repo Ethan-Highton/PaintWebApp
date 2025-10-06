@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -50,6 +49,14 @@
         <button *ngIf="lastRoom == false" type="button" class="btn btn-primary" (click)="nextButtonClicked.emit();" >Next</button>
         <button *ngIf="lastRoom == true" type="button" class="btn btn-primary" (click)="nextButtonClicked.emit()" >Finish!</button>
       </div>
+      <div class="col-4">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text rounded-left" id="input-group-sizing-default">Coverage</span>
+          </div>
+          <input type="text" class="form-control rounded-right" style="text-align: right; padding-right: 0;" [(ngModel)]="coverage" min="1">
+        </div>
+      </div>
     </div>
     <div class="row">
       <div class="col">
@@ -64,7 +71,7 @@
           </div>
           <div class="row">
             <div class="input-group mb-3 col-3" id="area">
-              <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
+              <input type="text" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
                 [value]="area | number:'1.0-2'" readonly>
               <div class="input-group-append">
                 <span class="input-group-text" id="input-group-sizing-default">Sqft</span>
@@ -139,37 +146,6 @@
             </div>
           </div>
         </div>
-        <!--<div class="col d-flex justify-content-center align-items-center">
-          <div class="rectangle" [style.width.px]="genWidth" [style.height.px]="genLength"></div>
-        </div>
-      </div>--><!--
-      <div class="row p-0">
-        <div class="col">
-          <h3>Ceiling Area:</h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-group mb-3 col-3">
-          <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
-                 [value]="ceilingArea" readonly>
-          <div class="input-group-append">
-            <span class="input-group-text" id="input-group-sizing-default">Sqft</span>
-          </div>
-        </div>
-        <div class="row">
-          <p class="col" style="margin-bottom: 1em">Per coat you will need:</p>
-        </div>
-        <div class="row">
-          <div class="input-group mb-3 col-3">
-            <input type="number" class="form-control text-right" style="border-color: transparent; text-align: right; padding-right: 0; "
-                   [value]="ceilingGals" readonly>
-            <div class="input-group-append">
-              <span class="input-group-text" id="input-group-sizing-default">Gallon(s)</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>-->
   </div>
   </div>
 

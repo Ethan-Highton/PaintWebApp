@@ -24,6 +24,11 @@ export class AppComponent {
     this.isDarkMode = !this.isDarkMode;
     document.documentElement.setAttribute('data-theme', this.isDarkMode ? 'dark' : 'light');
     localStorage.setItem('darkMode', this.isDarkMode.toString());
+    if (this.isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
   }
 
   private checkDarkMode(): void {

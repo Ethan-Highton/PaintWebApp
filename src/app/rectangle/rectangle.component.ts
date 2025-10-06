@@ -15,6 +15,7 @@ export class RectangleComponent {
   ceilingArea: number | null = null;
   ceilingGals: number | null = null;
   ceilingQuarts: number | null = null;
+  coverage: number = 400;
   showResults = false;
   allInputsFilled = false;
   scale: number = 15; //
@@ -62,10 +63,10 @@ reset(){
   calculate() {
     this.area = 2 * (this.width! * this.height!) + 2 * (this.length! * this.height!);
     this.showResults = true;
-    this.gals = this.area / 400;
+    this.gals = this.area / this.coverage;
     this.quarts = this.gals * 4;
     this.ceilingArea = this.width! * this.length!;
-    this.ceilingGals = this.ceilingArea! / 400;
+    this.ceilingGals = this.ceilingArea! / this.coverage;
     this.ceilingQuarts = this.ceilingGals * 4;
     this.areaCalculated.emit(this.area);
   }
